@@ -54,7 +54,7 @@
         .card { background: var(--card-bg); border-radius: 16px; padding: 14px; margin-bottom: 12px; border: 1px solid #262938; }
         
         /* 扫描器容器层 */
-        .screener-container { width: 100%; height: 320px; border-radius: 12px; overflow: hidden; background: #131722; }
+        .screener-container { width: 100%; height: 360px; border-radius: 12px; overflow: hidden; background: #131722; }
 
         .input-group { margin-bottom: 10px; }
         label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
@@ -69,6 +69,7 @@
             color: #fff;
             font-size: 16px;
             outline: none;
+            transition: border 0.2s;
         }
         input:focus { border-color: var(--accent-gold); }
         
@@ -88,32 +89,44 @@
 
 <div class="container">
     <h1>麻雀战法 · 智能全自动雷达</h1>
-    <div class="subtitle">热门美股 1分钟线 · 自动突破捕捉器</div>
+    <div class="subtitle">热门美股 实时全自动突破监控</div>
 
     <div class="card">
         <div style="font-size: 13px; color: var(--accent-gold); font-weight: 600; margin-bottom: 8px;">
-            ⚡ 1分钟实时金叉/突破监控榜 (非仙股/热门标的)
+            ⚡ 热门知名美股实时监控榜 (非仙股)
         </div>
         <div class="screener-container">
             <div class="tradingview-widget-container">
                 <div class="tradingview-widget-container__widget"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
                 {
                 "width": "100%",
                 "height": "100%",
-                "defaultColumn": "technical",
-                "defaultScreen": "most_capitalized",
-                "market": "america",
-                "showToolbar": false,
+                "symbolsGroups": [
+                  {
+                    "name": "多头动量监控组",
+                    "symbols": [
+                      {"symbol": "NASDAQ:NVDA", "displayName": "英伟达"},
+                      {"symbol": "NASDAQ:TSLA", "displayName": "特斯拉"},
+                      {"symbol": "NASDAQ:AAPL", "displayName": "苹果"},
+                      {"symbol": "NASDAQ:AMD", "displayName": "AMD"},
+                      {"symbol": "NASDAQ:AMZN", "displayName": "亚马逊"},
+                      {"symbol": "NASDAQ:META", "displayName": "META"},
+                      {"symbol": "NASDAQ:MSFT", "displayName": "微软"},
+                      {"symbol": "NYSE:BABA", "displayName": "阿里巴巴"}
+                    ]
+                  }
+                ],
+                "showSymbolLogo": true,
                 "colorTheme": "dark",
-                "locale": "zh_CN",
-                "isTransparent": true
+                "isTransparent": true,
+                "locale": "zh_CN"
                 }
                 </script>
             </div>
         </div>
         <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px; line-height: 1.4;">
-            💡 **实战用法**：盯着列表中“技术”那一栏。当发现某个知名大蓝筹或高动量股变成亮绿色的 <span style="color:var(--green-up); font-weight:bold;">“强力买入”</span> 时，说明它在 1分钟线 已经强势金叉并突防 VWAP！
+            💡 **实战用法**：点击列表中的股票，可以直接看它们的涨跌幅。配合 1M 走势，当发现高动量标的突然放量拉升，即可选择跟进！
         </p>
     </div>
 
@@ -148,8 +161,8 @@ function calculate() {
         document.getElementById('profit-val').innerText = '$0.000';
         return;
     }
-    const lossPrice = price * 0.985;
-    const profitPrice = price * 1.03;
+    const lossPrice = price * 0.985;   // -1.5%
+    const profitPrice = price * 1.03;  // +3.0%
     document.getElementById('loss-val').innerText = '$' + lossPrice.toFixed(3);
     document.getElementById('profit-val').innerText = '$' + profitPrice.toFixed(3);
 }
