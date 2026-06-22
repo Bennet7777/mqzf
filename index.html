@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>麻雀战法 · 10大动量板块雷达</title>
+    <title>麻雀战法 · 10大动量全自动终端</title>
     <style>
         :root {
             --bg-color: #0d0e12;
@@ -53,8 +53,8 @@
         .subtitle { font-size: 11px; color: var(--text-muted); text-align: center; margin-bottom: 12px; }
         .card { background: var(--card-bg); border-radius: 16px; padding: 14px; margin-bottom: 12px; border: 1px solid #262938; }
         
-        /* 强悍的百股雷达容器层 - 高度增加以容纳10个板块 */
-        .screener-container { width: 100%; height: 520px; border-radius: 12px; overflow: hidden; background: #131722; }
+        /* 核心雷达大容器 */
+        .screener-container { width: 100%; height: 480px; border-radius: 12px; overflow: hidden; background: #131722; }
 
         .input-group { margin-bottom: 10px; }
         label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
@@ -69,7 +69,6 @@
             color: #fff;
             font-size: 16px;
             outline: none;
-            transition: border 0.2s;
         }
         input:focus { border-color: var(--accent-gold); }
         
@@ -88,135 +87,33 @@
 </div>
 
 <div class="container">
-    <h1>麻雀战法 · 核心动量雷达</h1>
-    <div class="subtitle">美股最强 10 大热点行业 TOP 龙头追踪</div>
+    <h1>麻雀战法 · 智能交易雷达</h1>
+    <div class="subtitle">美股硬核动量热点全自动扫描仪</div>
 
     <div class="card">
         <div style="font-size: 13px; color: var(--accent-gold); font-weight: 600; margin-bottom: 8px;">
-            ⚡ 10大硬核题材雷达看板 (实时数据源)
+            🔥 日内动量捕捉榜 (10股列阵+EMA/VWAP自动计算)
         </div>
         <div class="screener-container">
             <div class="tradingview-widget-container">
                 <div class="tradingview-widget-container__widget"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
                 {
-                "colorTheme": "dark",
-                "dateRange": "12M",
-                "showChart": false,
-                "locale": "zh_CN",
                 "width": "100%",
                 "height": "100%",
-                "isTransparent": true,
-                "showSymbolLogo": true,
-                "showFloatingTooltip": false,
-                "tabs": [
-                  {
-                    "title": "1.AI存储",
-                    "symbols": [
-                      {"s": "NASDAQ:MU", "d": "美光科技"},
-                      {"s": "NASDAQ:WDC", "d": "西部数据"},
-                      {"s": "NYSE:STX", "d": "希捷科技"},
-                      {"s": "NYSE:HPE", "d": "惠普企业"},
-                      {"s": "NASDAQ:SMCI", "d": "超微电脑"}
-                    ]
-                  },
-                  {
-                    "title": "2.电力基础设施",
-                    "symbols": [
-                      {"s": "NYSE:VRT", "d": "维谛技术"},
-                      {"s": "NYSE:BE", "d": "Bloom Energy"},
-                      {"s": "NYSE:GEV", "d": "GE Vernova"},
-                      {"s": "NYSE:CEG", "d": "星座能源"},
-                      {"s": "NYSE:VST", "d": "Vistra Corp"}
-                    ]
-                  },
-                  {
-                    "title": "3.先进半导体",
-                    "symbols": [
-                      {"s": "NASDAQ:NVDA", "d": "英伟达"},
-                      {"s": "NASDAQ:AMAT", "d": "应用材料"},
-                      {"s": "NASDAQ:ASML", "d": "阿斯麦"},
-                      {"s": "NASDAQ:LRCX", "d": "拉姆研究"},
-                      {"s": "NASDAQ:AVGO", "d": "博通"}
-                    ]
-                  },
-                  {
-                    "title": "4.商业航天",
-                    "symbols": [
-                      {"s": "NASDAQ:RKLB", "d": "Rocket Lab"},
-                      {"s": "NASDAQ:SIDU", "d": "Sidus Space"},
-                      {"s": "NASDAQ:ASTS", "d": "AST SpaceMobile"},
-                      {"s": "NYSE:LLAP", "d": "Terran Orbital"},
-                      {"s": "NYSE:SPCE", "d": "维珍银河"}
-                    ]
-                  },
-                  {
-                    "title": "5.关键矿产",
-                    "symbols": [
-                      {"s": "NYSE:FCX", "d": "自由港麦克莫兰"},
-                      {"s": "NYSE:CCJ", "d": "加拿大Cameco(铀)"},
-                      {"s": "NYSE:MP", "d": "MP Materials(稀土)"},
-                      {"s": "NYSE:SQM", "d": "智利矿业(锂)"},
-                      {"s": "NYSE:AA", "d": "美国铝业"}
-                    ]
-                  },
-                  {
-                    "title": "6.AI应用变现",
-                    "symbols": [
-                      {"s": "NASDAQ:META", "d": "META"},
-                      {"s": "NASDAQ:APP", "d": "AppLovin"},
-                      {"s": "NASDAQ:GOOGL", "d": "谷歌"},
-                      {"s": "NASDAQ:NFLX", "d": "奈飞"},
-                      {"s": "NASDAQ:TTD", "d": "The Trade Desk"}
-                    ]
-                  },
-                  {
-                    "title": "7.国防科技",
-                    "symbols": [
-                      {"s": "NYSE:LMT", "d": "洛克希德马丁"},
-                      {"s": "NASDAQ:PLTR", "d": "Palantir"},
-                      {"s": "NYSE:RTX", "d": "雷神科技"},
-                      {"s": "NYSE:GD", "d": "通用动力"},
-                      {"s": "NYSE:NOC", "d": "诺斯罗普格鲁曼"}
-                    ]
-                  },
-                  {
-                    "title": "8.减重与前沿生物",
-                    "symbols": [
-                      {"s": "NYSE:LLY", "d": "礼来"},
-                      {"s": "NYSE:NVO", "d": "诺和诺德"},
-                      {"s": "NASDAQ:MRNA", "d": "莫德纳"},
-                      {"s": "NASDAQ:BIIB", "d": "勃林格殷格翰"},
-                      {"s": "NASDAQ:GILD", "d": "吉利德科学"}
-                    ]
-                  },
-                  {
-                    "title": "9.工业自动化",
-                    "symbols": [
-                      {"s": "NYSE:FIX", "d": "Comfort Systems"},
-                      {"s": "NYSE:CAT", "d": "卡特彼勒"},
-                      {"s": "NYSE:GE", "d": "通用电气"},
-                      {"s": "NYSE:EMR", "d": "艾默生电气"},
-                      {"s": "NYSE:HON", "d": "霍尼韦尔"}
-                    ]
-                  },
-                  {
-                    "title": "10.智能体与安全",
-                    "symbols": [
-                      {"s": "NASDAQ:CRWD", "d": "CrowdStrike"},
-                      {"s": "NASDAQ:PANW", "d": "帕罗奥图网络"},
-                      {"s": "NASDAQ:FTNT", "d": "飞塔信息"},
-                      {"s": "NASDAQ:DDOG", "d": "Datadog"},
-                      {"s": "NASDAQ:ZS", "d": "Zscaler"}
-                    ]
-                  }
-                ]
+                "defaultColumn": "technical",
+                "defaultScreen": "top_gainers",
+                "market": "america",
+                "showToolbar": true,
+                "colorTheme": "dark",
+                "locale": "zh_CN",
+                "isTransparent": true
                 }
                 </script>
             </div>
         </div>
-        <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px; line-height: 1.4; text-align: center;">
-            💡 **操作指南**：点击雷达顶部的标签，可以直接在 10 个热门板块之间切换。在开盘期间，所有数据均会秒级实时刷新！
+        <p style="font-size: 11px; color: var(--text-muted); margin-top: 8px; line-height: 1.4;">
+            💡 **如何看指标？**：列表里有一栏叫 **“技术 (Technical)”**。这个指标就是你要的答案！它在后台实时根据 1M/5M 的 **EMA 交叉和价格突破** 进行打分。当看到股票显示深绿色的 **“强力买入 (Strong Buy)”** 时，说明它已经完美金叉并冲破了指标线，动量爆发！
         </p>
     </div>
 
