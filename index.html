@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>麻雀战法 · 10大动量全自动终端</title>
+    <title>麻雀战法 · 10大动量战控终端</title>
     <style>
         :root {
             --bg-color: #0d0e12;
@@ -53,8 +53,8 @@
         .subtitle { font-size: 11px; color: var(--text-muted); text-align: center; margin-bottom: 12px; }
         .card { background: var(--card-bg); border-radius: 16px; padding: 14px; margin-bottom: 12px; border: 1px solid #262938; }
         
-        /* 10大板块自适应多标签筛选器 */
-        .screener-container { width: 100%; height: 500px; border-radius: 12px; overflow: hidden; background: #131722; }
+        /* 核心雷达大容器 */
+        .screener-container { width: 100%; height: 550px; border-radius: 12px; overflow: hidden; background: #131722; }
 
         .input-group { margin-bottom: 10px; }
         label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
@@ -87,120 +87,185 @@
 </div>
 
 <div class="container">
-    <h1>麻雀战法 · 智能交易雷达</h1>
-    <div class="subtitle">10 大硬核动量板块 · 实时指标一体化终端</div>
+    <h1>麻雀战法 · 战控终端</h1>
+    <div class="subtitle">10 大硬核动量板块 · 100 股极速行情监控</div>
 
     <div class="card">
         <div style="font-size: 13px; color: var(--accent-gold); font-weight: 600; margin-bottom: 8px;">
-            ⚡ 10大核心板块 TOP 10 实时技术雷达
+            ⚡ 10 大热点板块 TOP 10 (左右滑动切换)
         </div>
         <div class="screener-container">
             <div class="tradingview-widget-container">
                 <div class="tradingview-widget-container__widget"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-watchlist.js" async>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
                 {
+                "colorTheme": "dark",
+                "dateRange": "1D",
+                "showChart": false,
+                "locale": "zh_CN",
                 "width": "100%",
                 "height": "100%",
-                "locale": "zh_CN",
-                "colorTheme": "dark",
                 "isTransparent": true,
-                "removeAllSymbols": true,
-                "savedWidgetId": "",
                 "showSymbolLogo": true,
-                "symbolsGroups": [
+                "showFloatingTooltip": false,
+                "tabs": [
                   {
-                    "name": "1.AI存储",
+                    "title": "1.AI存储",
                     "symbols": [
                       {"s": "NASDAQ:MU", "d": "美光科技"},
                       {"s": "NASDAQ:WDC", "d": "西部数据"},
                       {"s": "NYSE:STX", "d": "希捷科技"},
                       {"s": "NYSE:HPE", "d": "惠普企业"},
-                      {"s": "NASDAQ:SMCI", "d": "超微电脑"}
+                      {"s": "NASDAQ:SMCI", "d": "超微电脑"},
+                      {"s": "NYSE:PSTG", "d": "Pure Storage"},
+                      {"s": "NASDAQ:NTAP", "d": "NetApp"},
+                      {"s": "NASDAQ:ARM", "d": "ARM"},
+                      {"s": "NASDAQ:QCOM", "d": "高通"},
+                      {"s": "AMEX:SPY", "d": "标普500"}
                     ]
                   },
                   {
-                    "name": "2.光通信",
+                    "title": "2.光通信",
                     "symbols": [
                       {"s": "NASDAQ:LITE", "d": "Lumentum"},
                       {"s": "NASDAQ:COHR", "d": "高意半导体"},
                       {"s": "NASDAQ:CIEN", "d": "希纳"},
-                      {"s": "NASDAQ:AAOI", "d": "应用光电"}
+                      {"s": "NASDAQ:AAOI", "d": "应用光电"},
+                      {"s": "NYSE:ACIA", "d": "Acacia"},
+                      {"s": "NASDAQ:INFN", "d": "Infinera"},
+                      {"s": "NYSE:NPTN", "d": "NeoPhotonics"},
+                      {"s": "NASDAQ:VIAV", "d": "Viavi"},
+                      {"s": "NASDAQ:CSCO", "d": "思科"},
+                      {"s": "NASDAQ:QQQ", "d": "纳指100"}
                     ]
                   },
                   {
-                    "name": "3.先进半导体与设备",
+                    "title": "3.先进半导体",
                     "symbols": [
                       {"s": "NASDAQ:NVDA", "d": "英伟达"},
                       {"s": "NASDAQ:AMAT", "d": "应用材料"},
                       {"s": "NASDAQ:ASML", "d": "阿斯麦"},
                       {"s": "NASDAQ:LRCX", "d": "拉姆研究"},
                       {"s": "NASDAQ:AVGO", "d": "博通"},
-                      {"s": "NASDAQ:AMD", "d": "AMD"}
+                      {"s": "NASDAQ:AMD", "d": "AMD"},
+                      {"s": "NASDAQ:KLAC", "d": "科磊"},
+                      {"s": "NASDAQ:TSM", "d": "台积电"},
+                      {"s": "NASDAQ:INTC", "d": "英特尔"},
+                      {"s": "NASDAQ:TXN", "d": "德州仪器"}
                     ]
                   },
                   {
-                    "name": "4.商业航天",
+                    "title": "4.商业航天",
                     "symbols": [
                       {"s": "NASDAQ:RKLB", "d": "Rocket Lab"},
                       {"s": "NASDAQ:SIDU", "d": "Sidus Space"},
-                      {"s": "NASDAQ:ASTS", "d": "AST航天"}
+                      {"s": "NASDAQ:ASTS", "d": "AST航天"},
+                      {"s": "NYSE:LLAP", "d": "Terran Orbital"},
+                      {"s": "NYSE:SPCE", "d": "维珍银河"},
+                      {"s": "NYSE:LMT", "d": "洛克希德马丁"},
+                      {"s": "NYSE:RTX", "d": "雷神科技"},
+                      {"s": "NYSE:NOC", "d": "诺斯罗普格鲁曼"},
+                      {"s": "NYSE:GD", "d": "通用动力"},
+                      {"s": "NYSE:BA", "d": "波音"}
                     ]
                   },
                   {
-                    "name": "5.关键矿产与有色",
+                    "title": "5.关键矿产",
                     "symbols": [
                       {"s": "NYSE:FCX", "d": "自由港麦克莫兰"},
                       {"s": "NYSE:CCJ", "d": "加拿大铀业"},
                       {"s": "NYSE:MP", "d": "MP稀土"},
-                      {"s": "NYSE:SQM", "d": "智利矿业"}
+                      {"s": "NYSE:SQM", "d": "智利矿业"},
+                      {"s": "NYSE:AA", "d": "美国铝业"},
+                      {"s": "NYSE:LAC", "d": "美洲锂业"},
+                      {"s": "NYSE:ALB", "d": "雅保"},
+                      {"s": "NYSE:NUE", "d": "纽柯钢铁"},
+                      {"s": "NYSE:CLF", "d": "克利夫兰克里夫"},
+                      {"s": "NYSE:VALE", "d": "淡水河谷"}
                     ]
                   },
                   {
-                    "name": "6.通信与AI应用变现",
+                    "title": "6.AI变现",
                     "symbols": [
                       {"s": "NASDAQ:META", "d": "META"},
                       {"s": "NASDAQ:APP", "d": "AppLovin"},
-                      {"s": "NASDAQ:GOOGL", "d": "谷歌"}
+                      {"s": "NASDAQ:GOOGL", "d": "谷歌"},
+                      {"s": "NASDAQ:NFLX", "d": "奈飞"},
+                      {"s": "NASDAQ:TTD", "d": "The Trade Desk"},
+                      {"s": "NASDAQ:MSFT", "d": "微软"},
+                      {"s": "NYSE:CRM", "d": "赛富时"},
+                      {"s": "NYSE:ORCL", "d": "甲骨文"},
+                      {"s": "NYSE:NOW", "d": "ServiceNow"},
+                      {"s": "NASDAQ:ADBE", "d": "Adobe"}
                     ]
                   },
                   {
-                    "name": "7.电力与电网基础设施",
+                    "title": "7.电力与电网",
                     "symbols": [
                       {"s": "NYSE:VRT", "d": "维谛技术"},
                       {"s": "NYSE:BE", "d": "Bloom Energy"},
-                      {"s": "NYSE:GEV", "d": "GE Vernova"}
+                      {"s": "NYSE:GEV", "d": "GE Vernova"},
+                      {"s": "NYSE:CEG", "d": "星座能源"},
+                      {"s": "NYSE:VST", "d": "Vistra"},
+                      {"s": "NYSE:EMR", "d": "艾默生电气"},
+                      {"s": "NYSE:ETN", "d": "伊顿"},
+                      {"s": "NYSE:PWR", "d": "广达服务"},
+                      {"s": "NYSE:AEE", "d": "Ameren"},
+                      {"s": "NYSE:SO", "d": "南方公司"}
                     ]
                   },
                   {
-                    "name": "8.减重药与生物医药",
+                    "title": "8.减肥药/医药",
                     "symbols": [
                       {"s": "NYSE:LLY", "d": "礼来"},
                       {"s": "NYSE:NVO", "d": "诺和诺德"},
-                      {"s": "NASDAQ:MRNA", "d": "莫德纳"}
+                      {"s": "NASDAQ:MRNA", "d": "莫德纳"},
+                      {"s": "NASDAQ:AMGN", "d": "安进"},
+                      {"s": "NYSE:PFE", "d": "辉瑞"},
+                      {"s": "NYSE:JNJ", "d": "强生"},
+                      {"s": "NYSE:BMY", "d": "百时美施贵宝"},
+                      {"s": "NASDAQ:GILD", "d": "吉利德"},
+                      {"s": "NASDAQ:BIIB", "d": "渤健"},
+                      {"s": "NYSE:ABBV", "d": "艾伯维"}
                     ]
                   },
                   {
-                    "name": "9.工业自动化与制造业",
+                    "title": "9.工业制造",
                     "symbols": [
                       {"s": "NYSE:FIX", "d": "Comfort Systems"},
-                      {"s": "NYSE:CAT", "d": "卡特彼勒"}
+                      {"s": "NYSE:CAT", "d": "卡特彼勒"},
+                      {"s": "NYSE:GE", "d": "通用电气"},
+                      {"s": "NYSE:HON", "d": "霍尼韦尔"},
+                      {"s": "NYSE:ROK", "d": "罗克韦尔"},
+                      {"s": "NASDAQ:FAST", "d": "快扣"},
+                      {"s": "NYSE:GWW", "d": "固安捷"},
+                      {"s": "NYSE:DE", "d": "迪尔"},
+                      {"s": "NYSE:URI", "d": "联合租赁"},
+                      {"s": "NYSE:ETN", "d": "伊顿"}
                     ]
                   },
                   {
-                    "name": "10.智能体与网络安全",
+                    "title": "10.安全/智能体",
                     "symbols": [
                       {"s": "NASDAQ:CRWD", "d": "CrowdStrike"},
-                      {"s": "NASDAQ:PANW", "d": "帕罗奥图网络"}
+                      {"s": "NASDAQ:PANW", "d": "帕罗奥图网络"},
+                      {"s": "NASDAQ:FTNT", "d": "飞塔信息"},
+                      {"s": "NASDAQ:DDOG", "d": "Datadog"},
+                      {"s": "NASDAQ:ZS", "d": "Zscaler"},
+                      {"s": "NASDAQ:OKTA", "d": "Okta"},
+                      {"s": "NASDAQ:NET", "d": "Cloudflare"},
+                      {"s": "NASDAQ:QLYS", "d": "Qualys"},
+                      {"s": "NASDAQ:TENB", "d": "Tenable"},
+                      {"s": "NASDAQ:CYBR", "d": "CyberArk"}
                     ]
                   }
-                ],
-                "showFloatingTooltip": false
+                ]
                 }
                 </script>
             </div>
         </div>
-        <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px; line-height: 1.4; text-align: center;">
-            💡 **实战看盘技巧**：点击雷达顶部的下拉或横向分类，可以在10个板块间切换。列表内**直接整合了中文名称、实时价格以及EMA/VWAP的综合技术分析状态**。
+        <p style="font-size: 11px; color: var(--text-muted); margin-top: 8px; line-height: 1.4;">
+            💡 **说明**：免费组件无法将自定义股票池与技术评分合并。实战中，请盯紧此列表的 **涨幅波动**，配合您盈透终端的 VWAP/EMA 指标进行切入。
         </p>
     </div>
 
