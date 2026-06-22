@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>麻雀战法 · 交易助手</title>
+    <title>麻雀战法 · 智能全自动雷达</title>
     <style>
         :root {
             --bg-color: #0d0e12;
@@ -36,6 +36,7 @@
             padding: 8px 0;
             overflow: hidden;
             white-space: nowrap;
+            z-index: 999;
         }
         .marquee {
             display: inline-block;
@@ -47,13 +48,16 @@
             100% { transform: translate3d(-100%, 0, 0); }
         }
         
-        .container { width: 100%; max-width: 400px; padding: 24px; }
-        h1 { font-size: 24px; font-weight: 600; color: var(--accent-gold); margin-bottom: 4px; text-align: center; }
-        .subtitle { font-size: 13px; color: var(--text-muted); text-align: center; margin-bottom: 24px; }
-        .card { background: var(--card-bg); border-radius: 16px; padding: 20px; margin-bottom: 20px; border: 1px solid #262938; }
-        .input-group { margin-bottom: 16px; }
-        .input-group:last-child { margin-bottom: 0; }
-        label { display: block; font-size: 13px; color: var(--text-muted); margin-bottom: 8px; font-weight: 500; }
+        .container { width: 100%; max-width: 430px; padding: 12px; }
+        h1 { font-size: 20px; font-weight: 600; color: var(--accent-gold); margin-bottom: 4px; text-align: center; }
+        .subtitle { font-size: 11px; color: var(--text-muted); text-align: center; margin-bottom: 12px; }
+        .card { background: var(--card-bg); border-radius: 16px; padding: 14px; margin-bottom: 12px; border: 1px solid #262938; }
+        
+        /* 扫描器容器层 */
+        .screener-container { width: 100%; height: 320px; border-radius: 12px; overflow: hidden; background: #131722; }
+
+        .input-group { margin-bottom: 10px; }
+        label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
         .input-wrapper { position: relative; display: flex; align-items: center; }
         .currency { position: absolute; left: 14px; color: var(--text-muted); font-size: 16px; }
         input {
@@ -61,31 +65,19 @@
             background: #202330;
             border: 1px solid #2d3142;
             border-radius: 10px;
-            padding: 12px 14px 12px 32px;
+            padding: 10px 14px 10px 32px;
             color: #fff;
             font-size: 16px;
             outline: none;
-            transition: border 0.2s;
         }
         input:focus { border-color: var(--accent-gold); }
         
-        .result-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #202330; }
+        .result-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #202330; }
         .result-row:last-child { border-bottom: none; }
-        .result-label { font-size: 14px; color: var(--text-muted); }
-        .result-value { font-size: 18px; font-weight: 700; font-family: "SF Pro Display", monospace; }
-        .value-total { color: #fff; font-size: 15px; font-weight: normal; }
+        .result-label { font-size: 13px; color: var(--text-muted); }
+        .result-value { font-size: 18px; font-weight: 700; font-family: monospace; }
         .value-loss { color: var(--red-down); }
         .value-profit { color: var(--green-up); }
-        
-        /* 底部警示语 */
-        .warning-box {
-            background: #1a1518;
-            border: 1px dashed rgba(255, 77, 79, 0.3);
-            border-radius: 12px;
-            padding: 14px;
-            margin-top: 10px;
-        }
-        .warning-box p { font-size: 13px; color: #e6a23c; line-height: 1.6; text-align: justify; }
     </style>
 </head>
 <body>
@@ -95,22 +87,42 @@
 </div>
 
 <div class="container">
-    <h1>麻雀战法 · 交易助手</h1>
-    <div class="subtitle">针对 17 Pro Max 专属优化版</div>
+    <h1>麻雀战法 · 智能全自动雷达</h1>
+    <div class="subtitle">热门美股 1分钟线 · 自动突破捕捉器</div>
+
+    <div class="card">
+        <div style="font-size: 13px; color: var(--accent-gold); font-weight: 600; margin-bottom: 8px;">
+            ⚡ 1分钟实时金叉/突破监控榜 (非仙股/热门标的)
+        </div>
+        <div class="screener-container">
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+                {
+                "width": "100%",
+                "height": "100%",
+                "defaultColumn": "technical",
+                "defaultScreen": "most_capitalized",
+                "market": "america",
+                "showToolbar": false,
+                "colorTheme": "dark",
+                "locale": "zh_CN",
+                "isTransparent": true
+                }
+                </script>
+            </div>
+        </div>
+        <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px; line-height: 1.4;">
+            💡 **实战用法**：盯着列表中“技术”那一栏。当发现某个知名大蓝筹或高动量股变成亮绿色的 <span style="color:var(--green-up); font-weight:bold;">“强力买入”</span> 时，说明它在 1分钟线 已经强势金叉并突防 VWAP！
+        </p>
+    </div>
 
     <div class="card">
         <div class="input-group">
-            <label for="price">输入：买入单股价格 (Cost Price)</label>
+            <label for="price">输入：当前入场单股价格 (Cost Price)</label>
             <div class="input-wrapper">
                 <span class="currency">$</span>
                 <input type="number" id="price" placeholder="0.00" step="0.0001" oninput="calculate()">
-            </div>
-        </div>
-        <div class="input-group">
-            <label for="shares">输入：买入股数 (可选，仅用于算总市值)</label>
-            <div class="input-wrapper">
-                <span class="currency">#</span>
-                <input type="number" id="shares" placeholder="0" step="1" oninput="calculate()">
             </div>
         </div>
     </div>
@@ -124,44 +136,22 @@
             <span class="result-label">🎯 单股自动止盈价 (+3.0%)</span>
             <span class="result-value value-profit" id="profit-val">$0.000</span>
         </div>
-        <div class="result-row">
-            <span class="result-label">当前战单总本金</span>
-            <span class="result-value value-total" id="total-val">$0.00</span>
-        </div>
     </div>
 
-    <div class="warning-box">
-        <p><strong>💡 战法铁律：</strong>麻雀战法核心在于“快、准、狠”，积小胜为大胜。一旦单股价格跌破上方红字<strong>止损点</strong>，必须无条件执行清仓，不得抱有任何侥幸心理！</p>
-    </div>
 </div>
 
 <script>
 function calculate() {
     const price = parseFloat(document.getElementById('price').value);
-    const shares = parseFloat(document.getElementById('shares').value);
-
     if (isNaN(price) || price <= 0) {
-        document.getElementById('total-val').innerText = '$0.00';
         document.getElementById('loss-val').innerText = '$0.000';
         document.getElementById('profit-val').innerText = '$0.000';
         return;
     }
-
-    // 核心逻辑：直接计算单股的止损价和止盈价
-    const lossPrice = price * 0.985;   // 单股降 1.5%
-    const profitPrice = price * 1.03;  // 单股涨 3.0%
-
-    // 渲染单股目标价（美股高波动，保留3位小数防止四舍五入误差）
+    const lossPrice = price * 0.985;
+    const profitPrice = price * 1.03;
     document.getElementById('loss-val').innerText = '$' + lossPrice.toFixed(3);
     document.getElementById('profit-val').innerText = '$' + profitPrice.toFixed(3);
-
-    // 计算总市值（如果输了股数的话）
-    if (!isNaN(shares) && shares > 0) {
-        const total = price * shares;
-        document.getElementById('total-val').innerText = '$' + total.toFixed(2);
-    } else {
-        document.getElementById('total-val').innerText = '未输股数';
-    }
 }
 </script>
 
