@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>麻雀战法 · 10大动量全自动雷达</title>
+    <title>麻雀战法 · 10大动量全自动终端</title>
     <style>
         :root {
             --bg-color: #0d0e12;
@@ -53,8 +53,8 @@
         .subtitle { font-size: 11px; color: var(--text-muted); text-align: center; margin-bottom: 12px; }
         .card { background: var(--card-bg); border-radius: 16px; padding: 14px; margin-bottom: 12px; border: 1px solid #262938; }
         
-        /* 10大板块专属容器层（高度调高以完美容纳10只股票列阵） */
-        .screener-container { width: 100%; height: 560px; border-radius: 12px; overflow: hidden; background: #131722; }
+        /* 10大板块自适应多标签筛选器 */
+        .screener-container { width: 100%; height: 500px; border-radius: 12px; overflow: hidden; background: #131722; }
 
         .input-group { margin-bottom: 10px; }
         label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
@@ -87,113 +87,120 @@
 </div>
 
 <div class="container">
-    <h1>麻雀战法 · 智能全自动雷达</h1>
-    <div class="subtitle">10 大硬核动量板块 · 100 股技术监控终端</div>
+    <h1>麻雀战法 · 智能交易雷达</h1>
+    <div class="subtitle">10 大硬核动量板块 · 实时指标一体化终端</div>
 
     <div class="card">
         <div style="font-size: 13px; color: var(--accent-gold); font-weight: 600; margin-bottom: 8px;">
-            ⚡ 10 大硬核热点行业 TOP 10 监控榜
+            ⚡ 10大核心板块 TOP 10 实时技术雷达
         </div>
         <div class="screener-container">
             <div class="tradingview-widget-container">
                 <div class="tradingview-widget-container__widget"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-watchlist.js" async>
                 {
-                "colorTheme": "dark",
-                "dateRange": "12M",
-                "showChart": false,
-                "locale": "zh_CN",
                 "width": "100%",
                 "height": "100%",
+                "locale": "zh_CN",
+                "colorTheme": "dark",
                 "isTransparent": true,
+                "removeAllSymbols": true,
+                "savedWidgetId": "",
                 "showSymbolLogo": true,
-                "showFloatingTooltip": false,
-                "plotLineColorGrowing": "rgba(46, 213, 115, 1)",
-                "plotLineColorFalling": "rgba(255, 77, 79, 1)",
-                "gridLineColor": "rgba(42, 46, 57, 1)",
-                "scaleFontColor": "rgba(134, 137, 147, 1)",
-                "belowLineFillColorGrowing": "rgba(46, 213, 115, 0.05)",
-                "belowLineFillColorFalling": "rgba(255, 77, 79, 0.05)",
-                "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
-                "tabs": [
+                "symbolsGroups": [
                   {
-                    "title": "1.AI存储",
+                    "name": "1.AI存储",
                     "symbols": [
-                      {"s": "NASDAQ:MU"}, {"s": "NASDAQ:WDC"}, {"s": "NYSE:STX"}, {"s": "NYSE:HPE"}, {"s": "NASDAQ:SMCI"},
-                      {"s": "NYSE:PSTG"}, {"s": "NASDAQ:NTAP"}, {"s": "NYSE:ANET"}, {"s": "NASDAQ:NNDM"}, {"s": "AMEX:SPY"}
+                      {"s": "NASDAQ:MU", "d": "美光科技"},
+                      {"s": "NASDAQ:WDC", "d": "西部数据"},
+                      {"s": "NYSE:STX", "d": "希捷科技"},
+                      {"s": "NYSE:HPE", "d": "惠普企业"},
+                      {"s": "NASDAQ:SMCI", "d": "超微电脑"}
                     ]
                   },
                   {
-                    "title": "2.光通信",
+                    "name": "2.光通信",
                     "symbols": [
-                      {"s": "NASDAQ:LITE"}, {"s": "NASDAQ:COHR"}, {"s": "NASDAQ:CIEN"}, {"s": "NASDAQ:FNSR"}, {"s": "NASDAQ:AAOI"},
-                      {"s": "NYSE:ACIA"}, {"s": "NASDAQ:INFN"}, {"s": "NYSE:NPTN"}, {"s": "NASDAQ:VIAV"}, {"s": "NASDAQ:QQQ"}
+                      {"s": "NASDAQ:LITE", "d": "Lumentum"},
+                      {"s": "NASDAQ:COHR", "d": "高意半导体"},
+                      {"s": "NASDAQ:CIEN", "d": "希纳"},
+                      {"s": "NASDAQ:AAOI", "d": "应用光电"}
                     ]
                   },
                   {
-                    "title": "3.先进半导体",
+                    "name": "3.先进半导体与设备",
                     "symbols": [
-                      {"s": "NASDAQ:NVDA"}, {"s": "NASDAQ:AMAT"}, {"s": "NASDAQ:ASML"}, {"s": "NASDAQ:LRCX"}, {"s": "NASDAQ:AVGO"},
-                      {"s": "NASDAQ:AMD"}, {"s": "NASDAQ:KLAC"}, {"s": "NASDAQ:TSM"}, {"s": "NASDAQ:INTC"}, {"s": "NASDAQ:TXN"}
+                      {"s": "NASDAQ:NVDA", "d": "英伟达"},
+                      {"s": "NASDAQ:AMAT", "d": "应用材料"},
+                      {"s": "NASDAQ:ASML", "d": "阿斯麦"},
+                      {"s": "NASDAQ:LRCX", "d": "拉姆研究"},
+                      {"s": "NASDAQ:AVGO", "d": "博通"},
+                      {"s": "NASDAQ:AMD", "d": "AMD"}
                     ]
                   },
                   {
-                    "title": "4.商业航天",
+                    "name": "4.商业航天",
                     "symbols": [
-                      {"s": "NASDAQ:RKLB"}, {"s": "NASDAQ:SIDU"}, {"s": "NASDAQ:ASTS"}, {"s": "NYSE:BABA"}, {"s": "NYSE:LLAP"},
-                      {"s": "NYSE:SPCE"}, {"s": "NYSE:LMT"}, {"s": "NYSE:RTX"}, {"s": "NYSE:NOC"}, {"s": "NYSE:GD"}
+                      {"s": "NASDAQ:RKLB", "d": "Rocket Lab"},
+                      {"s": "NASDAQ:SIDU", "d": "Sidus Space"},
+                      {"s": "NASDAQ:ASTS", "d": "AST航天"}
                     ]
                   },
                   {
-                    "title": "5.关键矿产",
+                    "name": "5.关键矿产与有色",
                     "symbols": [
-                      {"s": "NYSE:FCX"}, {"s": "NYSE:CCJ"}, {"s": "NYSE:MP"}, {"s": "NYSE:SQM"}, {"s": "NYSE:AA"},
-                      {"s": "NYSE:LAC"}, {"s": "NYSE:ALB"}, {"s": "NYSE:NUE"}, {"s": "NYSE:CLF"}, {"s": "NYSE:VALE"}
+                      {"s": "NYSE:FCX", "d": "自由港麦克莫兰"},
+                      {"s": "NYSE:CCJ", "d": "加拿大铀业"},
+                      {"s": "NYSE:MP", "d": "MP稀土"},
+                      {"s": "NYSE:SQM", "d": "智利矿业"}
                     ]
                   },
                   {
-                    "title": "6.AI应用变现",
+                    "name": "6.通信与AI应用变现",
                     "symbols": [
-                      {"s": "NASDAQ:META"}, {"s": "NASDAQ:APP"}, {"s": "NASDAQ:GOOGL"}, {"s": "NASDAQ:NFLX"}, {"s": "NASDAQ:TTD"},
-                      {"s": "NASDAQ:MSFT"}, {"s": "NYSE:CRM"}, {"s": "NYSE:ORCL"}, {"s": "NYSE:NOW"}, {"s": "NASDAQ:ADBE"}
+                      {"s": "NASDAQ:META", "d": "META"},
+                      {"s": "NASDAQ:APP", "d": "AppLovin"},
+                      {"s": "NASDAQ:GOOGL", "d": "谷歌"}
                     ]
                   },
                   {
-                    "title": "7.电力与电网",
+                    "name": "7.电力与电网基础设施",
                     "symbols": [
-                      {"s": "NYSE:VRT"}, {"s": "NYSE:BE"}, {"s": "NYSE:GEV"}, {"s": "NYSE:CEG"}, {"s": "NYSE:VST"},
-                      {"s": "NYSE:EMR"}, {"s": "NYSE:ETN"}, {"s": "NYSE:PWR"}, {"s": "NYSE:AEE"}, {"s": "NYSE:SO"}
+                      {"s": "NYSE:VRT", "d": "维谛技术"},
+                      {"s": "NYSE:BE", "d": "Bloom Energy"},
+                      {"s": "NYSE:GEV", "d": "GE Vernova"}
                     ]
                   },
                   {
-                    "title": "8.减重与生物医药",
+                    "name": "8.减重药与生物医药",
                     "symbols": [
-                      {"s": "NYSE:LLY"}, {"s": "NYSE:NVO"}, {"s": "NASDAQ:MRNA"}, {"s": "NASDAQ:AMGN"}, {"s": "NYSE:PFE"},
-                      {"s": "NYSE:JNJ"}, {"s": "NYSE:BMY"}, {"s": "NASDAQ:GILD"}, {"s": "NASDAQ:BIIB"}, {"s": "NYSE:ABV"}
+                      {"s": "NYSE:LLY", "d": "礼来"},
+                      {"s": "NYSE:NVO", "d": "诺和诺德"},
+                      {"s": "NASDAQ:MRNA", "d": "莫德纳"}
                     ]
                   },
                   {
-                    "title": "9.工业自动化",
+                    "name": "9.工业自动化与制造业",
                     "symbols": [
-                      {"s": "NYSE:FIX"}, {"s": "NYSE:CAT"}, {"s": "NYSE:GE"}, {"s": "NYSE:HON"}, {"s": "NYSE:ROK"},
-                      {"s": "NYSE:FAST"}, {"s": "NYSE:GWW"}, {"s": "NYSE:DE"}, {"s": "NYSE:URI"}, {"s": "NYSE:ETN"}
+                      {"s": "NYSE:FIX", "d": "Comfort Systems"},
+                      {"s": "NYSE:CAT", "d": "卡特彼勒"}
                     ]
                   },
                   {
-                    "title": "10.智能体与安全",
+                    "name": "10.智能体与网络安全",
                     "symbols": [
-                      {"s": "NASDAQ:CRWD"}, {"s": "NASDAQ:PANW"}, {"s": "NASDAQ:FTNT"}, {"s": "NASDAQ:DDOG"}, {"s": "NASDAQ:ZS"},
-                      {"s": "NASDAQ:OKTA"}, {"s": "NASDAQ:NET"}, {"s": "NASDAQ:QLYS"}, {"s": "NASDAQ:TENB"}, {"s": "NASDAQ:CYBR"}
+                      {"s": "NASDAQ:CRWD", "d": "CrowdStrike"},
+                      {"s": "NASDAQ:PANW", "d": "帕罗奥图网络"}
                     ]
                   }
-                ]
+                ],
+                "showFloatingTooltip": false
                 }
                 </script>
             </div>
         </div>
         <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px; line-height: 1.4; text-align: center;">
-            💡 **核心：如何看 EMA / VWAP 指标？**<br>
-            在组件的列表中，**默认直接显示了所有个股的实时技术分析评分**（买入/卖出/强力买入）。当开盘期间看到您关注的龙头（如 MU、RKLB、SIDU）变为绿色的 **“买入”或“强力买入”** 时，即代表 1M/5M 线已成功发生 **EMA 金叉并成功突防 VWAP 生死线**，多头共振确立！
+            💡 **实战看盘技巧**：点击雷达顶部的下拉或横向分类，可以在10个板块间切换。列表内**直接整合了中文名称、实时价格以及EMA/VWAP的综合技术分析状态**。
         </p>
     </div>
 
