@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>麻雀战法 · 10大动量战控终端</title>
+    <title>麻雀战法 · 终极双核终端</title>
     <style>
         :root {
             --bg-color: #0d0e12;
@@ -13,6 +13,7 @@
             --text-muted: #8a8d99;
             --red-down: #ff4d4f;
             --green-up: #2ed573;
+            --tab-bg: #202330;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         body {
@@ -25,7 +26,8 @@
             align-items: center;
             min-height: 100vh;
         }
-        /* 交易纪律跑马灯 */
+        
+        /* 1. 顶部硬核纪律跑马灯 */
         .discipline-bar {
             width: 100%;
             background: rgba(255, 77, 79, 0.15);
@@ -48,14 +50,39 @@
             100% { transform: translate3d(-100%, 0, 0); }
         }
         
-        .container { width: 100%; max-width: 430px; padding: 12px; }
+        .container { width: 100%; max-width: 430px; padding: 12px; display: flex; flex-direction: column; flex: 1; }
         h1 { font-size: 20px; font-weight: 600; color: var(--accent-gold); margin-bottom: 4px; text-align: center; }
-        .subtitle { font-size: 11px; color: var(--text-muted); text-align: center; margin-bottom: 12px; }
+        .subtitle { font-size: 11px; color: var(--text-muted); text-align: center; margin-bottom: 16px; }
         .card { background: var(--card-bg); border-radius: 16px; padding: 14px; margin-bottom: 12px; border: 1px solid #262938; }
         
-        /* 核心雷达大容器 */
-        .screener-container { width: 100%; height: 550px; border-radius: 12px; overflow: hidden; background: #131722; }
+        /* 2. 双引擎切换按钮 (App 级 UI) */
+        .tab-container {
+            display: flex;
+            background: var(--tab-bg);
+            border-radius: 12px;
+            padding: 4px;
+            margin-bottom: 12px;
+        }
+        .tab-btn {
+            flex: 1;
+            text-align: center;
+            padding: 10px 0;
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .tab-btn.active {
+            background: var(--accent-gold);
+            color: #0d0e12;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
 
+        /* 3. 雷达容器 */
+        .widget-wrapper { width: 100%; height: 460px; border-radius: 12px; overflow: hidden; background: #131722; position: relative; }
+        
+        /* 4. 计算器样式 */
         .input-group { margin-bottom: 10px; }
         label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
         .input-wrapper { position: relative; display: flex; align-items: center; }
@@ -69,9 +96,9 @@
             color: #fff;
             font-size: 16px;
             outline: none;
+            transition: border 0.2s;
         }
         input:focus { border-color: var(--accent-gold); }
-        
         .result-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #202330; }
         .result-row:last-child { border-bottom: none; }
         .result-label { font-size: 13px; color: var(--text-muted); }
@@ -88,13 +115,16 @@
 
 <div class="container">
     <h1>麻雀战法 · 战控终端</h1>
-    <div class="subtitle">10 大硬核动量板块 · 100 股极速行情监控</div>
+    <div class="subtitle">双核引擎：10大板块阵地 ↔ EMA/VWAP 信号雷达</div>
 
-    <div class="card">
-        <div style="font-size: 13px; color: var(--accent-gold); font-weight: 600; margin-bottom: 8px;">
-            ⚡ 10 大热点板块 TOP 10 (左右滑动切换)
-        </div>
-        <div class="screener-container">
+    <div class="tab-container">
+        <div class="tab-btn active" id="btn-watchlist" onclick="switchTab('watchlist')">📡 10大硬核板块</div>
+        <div class="tab-btn" id="btn-screener" onclick="switchTab('screener')">🎯 自动技术雷达</div>
+    </div>
+
+    <div class="card" style="padding: 10px;">
+        
+        <div id="view-watchlist" class="widget-wrapper">
             <div class="tradingview-widget-container">
                 <div class="tradingview-widget-container__widget"></div>
                 <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
@@ -107,156 +137,65 @@
                 "height": "100%",
                 "isTransparent": true,
                 "showSymbolLogo": true,
-                "showFloatingTooltip": false,
                 "tabs": [
                   {
-                    "title": "1.AI存储",
+                    "title": "1.存储",
                     "symbols": [
-                      {"s": "NASDAQ:MU", "d": "美光科技"},
-                      {"s": "NASDAQ:WDC", "d": "西部数据"},
-                      {"s": "NYSE:STX", "d": "希捷科技"},
-                      {"s": "NYSE:HPE", "d": "惠普企业"},
-                      {"s": "NASDAQ:SMCI", "d": "超微电脑"},
-                      {"s": "NYSE:PSTG", "d": "Pure Storage"},
-                      {"s": "NASDAQ:NTAP", "d": "NetApp"},
-                      {"s": "NASDAQ:ARM", "d": "ARM"},
-                      {"s": "NASDAQ:QCOM", "d": "高通"},
-                      {"s": "AMEX:SPY", "d": "标普500"}
+                      {"s": "NASDAQ:MU", "d": "美光"}, {"s": "NASDAQ:WDC", "d": "西数"}, {"s": "NYSE:STX", "d": "希捷"}, {"s": "NASDAQ:SMCI", "d": "超微电脑"}, {"s": "NYSE:PSTG", "d": "Pure Storage"}, {"s": "NASDAQ:NTAP", "d": "NetApp"}, {"s": "NASDAQ:ARM", "d": "ARM"}, {"s": "NASDAQ:QCOM", "d": "高通"}, {"s": "NYSE:HPE", "d": "惠普"}, {"s": "AMEX:SPY", "d": "标普500"}
                     ]
                   },
                   {
                     "title": "2.光通信",
                     "symbols": [
-                      {"s": "NASDAQ:LITE", "d": "Lumentum"},
-                      {"s": "NASDAQ:COHR", "d": "高意半导体"},
-                      {"s": "NASDAQ:CIEN", "d": "希纳"},
-                      {"s": "NASDAQ:AAOI", "d": "应用光电"},
-                      {"s": "NYSE:ACIA", "d": "Acacia"},
-                      {"s": "NASDAQ:INFN", "d": "Infinera"},
-                      {"s": "NYSE:NPTN", "d": "NeoPhotonics"},
-                      {"s": "NASDAQ:VIAV", "d": "Viavi"},
-                      {"s": "NASDAQ:CSCO", "d": "思科"},
-                      {"s": "NASDAQ:QQQ", "d": "纳指100"}
+                      {"s": "NASDAQ:LITE", "d": "Lumentum"}, {"s": "NASDAQ:COHR", "d": "高意"}, {"s": "NASDAQ:CIEN", "d": "希纳"}, {"s": "NASDAQ:AAOI", "d": "应用光电"}, {"s": "NYSE:ACIA", "d": "Acacia"}, {"s": "NASDAQ:INFN", "d": "Infinera"}, {"s": "NYSE:NPTN", "d": "NeoPhotonics"}, {"s": "NASDAQ:VIAV", "d": "Viavi"}, {"s": "NASDAQ:CSCO", "d": "思科"}, {"s": "NASDAQ:QQQ", "d": "纳指100"}
                     ]
                   },
                   {
-                    "title": "3.先进半导体",
+                    "title": "3.半导体",
                     "symbols": [
-                      {"s": "NASDAQ:NVDA", "d": "英伟达"},
-                      {"s": "NASDAQ:AMAT", "d": "应用材料"},
-                      {"s": "NASDAQ:ASML", "d": "阿斯麦"},
-                      {"s": "NASDAQ:LRCX", "d": "拉姆研究"},
-                      {"s": "NASDAQ:AVGO", "d": "博通"},
-                      {"s": "NASDAQ:AMD", "d": "AMD"},
-                      {"s": "NASDAQ:KLAC", "d": "科磊"},
-                      {"s": "NASDAQ:TSM", "d": "台积电"},
-                      {"s": "NASDAQ:INTC", "d": "英特尔"},
-                      {"s": "NASDAQ:TXN", "d": "德州仪器"}
+                      {"s": "NASDAQ:NVDA", "d": "英伟达"}, {"s": "NASDAQ:AMAT", "d": "应用材料"}, {"s": "NASDAQ:ASML", "d": "阿斯麦"}, {"s": "NASDAQ:LRCX", "d": "拉姆研究"}, {"s": "NASDAQ:AVGO", "d": "博通"}, {"s": "NASDAQ:AMD", "d": "AMD"}, {"s": "NASDAQ:KLAC", "d": "科磊"}, {"s": "NASDAQ:TSM", "d": "台积电"}, {"s": "NASDAQ:INTC", "d": "英特尔"}, {"s": "NASDAQ:TXN", "d": "德州仪器"}
                     ]
                   },
                   {
-                    "title": "4.商业航天",
+                    "title": "4.航天",
                     "symbols": [
-                      {"s": "NASDAQ:RKLB", "d": "Rocket Lab"},
-                      {"s": "NASDAQ:SIDU", "d": "Sidus Space"},
-                      {"s": "NASDAQ:ASTS", "d": "AST航天"},
-                      {"s": "NYSE:LLAP", "d": "Terran Orbital"},
-                      {"s": "NYSE:SPCE", "d": "维珍银河"},
-                      {"s": "NYSE:LMT", "d": "洛克希德马丁"},
-                      {"s": "NYSE:RTX", "d": "雷神科技"},
-                      {"s": "NYSE:NOC", "d": "诺斯罗普格鲁曼"},
-                      {"s": "NYSE:GD", "d": "通用动力"},
-                      {"s": "NYSE:BA", "d": "波音"}
+                      {"s": "NASDAQ:RKLB", "d": "Rocket Lab"}, {"s": "NASDAQ:SIDU", "d": "Sidus Space"}, {"s": "NASDAQ:ASTS", "d": "AST航天"}, {"s": "NYSE:LLAP", "d": "Terran"}, {"s": "NYSE:SPCE", "d": "维珍银河"}, {"s": "NYSE:LMT", "d": "洛马"}, {"s": "NYSE:RTX", "d": "雷神"}, {"s": "NYSE:NOC", "d": "诺斯罗普"}, {"s": "NYSE:GD", "d": "通用动力"}, {"s": "NYSE:BA", "d": "波音"}
                     ]
                   },
                   {
-                    "title": "5.关键矿产",
+                    "title": "5.矿产",
                     "symbols": [
-                      {"s": "NYSE:FCX", "d": "自由港麦克莫兰"},
-                      {"s": "NYSE:CCJ", "d": "加拿大铀业"},
-                      {"s": "NYSE:MP", "d": "MP稀土"},
-                      {"s": "NYSE:SQM", "d": "智利矿业"},
-                      {"s": "NYSE:AA", "d": "美国铝业"},
-                      {"s": "NYSE:LAC", "d": "美洲锂业"},
-                      {"s": "NYSE:ALB", "d": "雅保"},
-                      {"s": "NYSE:NUE", "d": "纽柯钢铁"},
-                      {"s": "NYSE:CLF", "d": "克利夫兰克里夫"},
-                      {"s": "NYSE:VALE", "d": "淡水河谷"}
+                      {"s": "NYSE:FCX", "d": "自由港"}, {"s": "NYSE:CCJ", "d": "铀业"}, {"s": "NYSE:MP", "d": "MP稀土"}, {"s": "NYSE:SQM", "d": "智利矿业"}, {"s": "NYSE:AA", "d": "美铝"}, {"s": "NYSE:LAC", "d": "美洲锂业"}, {"s": "NYSE:ALB", "d": "雅保"}, {"s": "NYSE:NUE", "d": "纽柯"}, {"s": "NYSE:CLF", "d": "克里夫兰"}, {"s": "NYSE:VALE", "d": "淡水河谷"}
                     ]
                   },
                   {
-                    "title": "6.AI变现",
+                    "title": "6.AI应用",
                     "symbols": [
-                      {"s": "NASDAQ:META", "d": "META"},
-                      {"s": "NASDAQ:APP", "d": "AppLovin"},
-                      {"s": "NASDAQ:GOOGL", "d": "谷歌"},
-                      {"s": "NASDAQ:NFLX", "d": "奈飞"},
-                      {"s": "NASDAQ:TTD", "d": "The Trade Desk"},
-                      {"s": "NASDAQ:MSFT", "d": "微软"},
-                      {"s": "NYSE:CRM", "d": "赛富时"},
-                      {"s": "NYSE:ORCL", "d": "甲骨文"},
-                      {"s": "NYSE:NOW", "d": "ServiceNow"},
-                      {"s": "NASDAQ:ADBE", "d": "Adobe"}
+                      {"s": "NASDAQ:META", "d": "META"}, {"s": "NASDAQ:APP", "d": "AppLovin"}, {"s": "NASDAQ:GOOGL", "d": "谷歌"}, {"s": "NASDAQ:NFLX", "d": "奈飞"}, {"s": "NASDAQ:TTD", "d": "Trade Desk"}, {"s": "NASDAQ:MSFT", "d": "微软"}, {"s": "NYSE:CRM", "d": "赛富时"}, {"s": "NYSE:ORCL", "d": "甲骨文"}, {"s": "NYSE:NOW", "d": "ServiceNow"}, {"s": "NASDAQ:ADBE", "d": "Adobe"}
                     ]
                   },
                   {
-                    "title": "7.电力与电网",
+                    "title": "7.电力",
                     "symbols": [
-                      {"s": "NYSE:VRT", "d": "维谛技术"},
-                      {"s": "NYSE:BE", "d": "Bloom Energy"},
-                      {"s": "NYSE:GEV", "d": "GE Vernova"},
-                      {"s": "NYSE:CEG", "d": "星座能源"},
-                      {"s": "NYSE:VST", "d": "Vistra"},
-                      {"s": "NYSE:EMR", "d": "艾默生电气"},
-                      {"s": "NYSE:ETN", "d": "伊顿"},
-                      {"s": "NYSE:PWR", "d": "广达服务"},
-                      {"s": "NYSE:AEE", "d": "Ameren"},
-                      {"s": "NYSE:SO", "d": "南方公司"}
+                      {"s": "NYSE:VRT", "d": "维谛技术"}, {"s": "NYSE:BE", "d": "Bloom"}, {"s": "NYSE:GEV", "d": "GE V"}, {"s": "NYSE:CEG", "d": "星座能源"}, {"s": "NYSE:VST", "d": "Vistra"}, {"s": "NYSE:EMR", "d": "艾默生"}, {"s": "NYSE:ETN", "d": "伊顿"}, {"s": "NYSE:PWR", "d": "广达服务"}, {"s": "NYSE:AEE", "d": "Ameren"}, {"s": "NYSE:SO", "d": "南方公司"}
                     ]
                   },
                   {
-                    "title": "8.减肥药/医药",
+                    "title": "8.医药",
                     "symbols": [
-                      {"s": "NYSE:LLY", "d": "礼来"},
-                      {"s": "NYSE:NVO", "d": "诺和诺德"},
-                      {"s": "NASDAQ:MRNA", "d": "莫德纳"},
-                      {"s": "NASDAQ:AMGN", "d": "安进"},
-                      {"s": "NYSE:PFE", "d": "辉瑞"},
-                      {"s": "NYSE:JNJ", "d": "强生"},
-                      {"s": "NYSE:BMY", "d": "百时美施贵宝"},
-                      {"s": "NASDAQ:GILD", "d": "吉利德"},
-                      {"s": "NASDAQ:BIIB", "d": "渤健"},
-                      {"s": "NYSE:ABBV", "d": "艾伯维"}
+                      {"s": "NYSE:LLY", "d": "礼来"}, {"s": "NYSE:NVO", "d": "诺和诺德"}, {"s": "NASDAQ:MRNA", "d": "莫德纳"}, {"s": "NASDAQ:AMGN", "d": "安进"}, {"s": "NYSE:PFE", "d": "辉瑞"}, {"s": "NYSE:JNJ", "d": "强生"}, {"s": "NYSE:BMY", "d": "百时美"}, {"s": "NASDAQ:GILD", "d": "吉利德"}, {"s": "NASDAQ:BIIB", "d": "渤健"}, {"s": "NYSE:ABBV", "d": "艾伯维"}
                     ]
                   },
                   {
-                    "title": "9.工业制造",
+                    "title": "9.工业",
                     "symbols": [
-                      {"s": "NYSE:FIX", "d": "Comfort Systems"},
-                      {"s": "NYSE:CAT", "d": "卡特彼勒"},
-                      {"s": "NYSE:GE", "d": "通用电气"},
-                      {"s": "NYSE:HON", "d": "霍尼韦尔"},
-                      {"s": "NYSE:ROK", "d": "罗克韦尔"},
-                      {"s": "NASDAQ:FAST", "d": "快扣"},
-                      {"s": "NYSE:GWW", "d": "固安捷"},
-                      {"s": "NYSE:DE", "d": "迪尔"},
-                      {"s": "NYSE:URI", "d": "联合租赁"},
-                      {"s": "NYSE:ETN", "d": "伊顿"}
+                      {"s": "NYSE:FIX", "d": "Comfort"}, {"s": "NYSE:CAT", "d": "卡特彼勒"}, {"s": "NYSE:GE", "d": "通用电气"}, {"s": "NYSE:HON", "d": "霍尼韦尔"}, {"s": "NYSE:ROK", "d": "罗克韦尔"}, {"s": "NASDAQ:FAST", "d": "快扣"}, {"s": "NYSE:GWW", "d": "固安捷"}, {"s": "NYSE:DE", "d": "迪尔"}, {"s": "NYSE:URI", "d": "联合租赁"}, {"s": "NYSE:ETN", "d": "伊顿"}
                     ]
                   },
                   {
-                    "title": "10.安全/智能体",
+                    "title": "10.安全",
                     "symbols": [
-                      {"s": "NASDAQ:CRWD", "d": "CrowdStrike"},
-                      {"s": "NASDAQ:PANW", "d": "帕罗奥图网络"},
-                      {"s": "NASDAQ:FTNT", "d": "飞塔信息"},
-                      {"s": "NASDAQ:DDOG", "d": "Datadog"},
-                      {"s": "NASDAQ:ZS", "d": "Zscaler"},
-                      {"s": "NASDAQ:OKTA", "d": "Okta"},
-                      {"s": "NASDAQ:NET", "d": "Cloudflare"},
-                      {"s": "NASDAQ:QLYS", "d": "Qualys"},
-                      {"s": "NASDAQ:TENB", "d": "Tenable"},
-                      {"s": "NASDAQ:CYBR", "d": "CyberArk"}
+                      {"s": "NASDAQ:CRWD", "d": "CrowdStrike"}, {"s": "NASDAQ:PANW", "d": "帕罗奥图"}, {"s": "NASDAQ:FTNT", "d": "飞塔"}, {"s": "NASDAQ:DDOG", "d": "Datadog"}, {"s": "NASDAQ:ZS", "d": "Zscaler"}, {"s": "NASDAQ:OKTA", "d": "Okta"}, {"s": "NASDAQ:NET", "d": "Cloudflare"}, {"s": "NASDAQ:QLYS", "d": "Qualys"}, {"s": "NASDAQ:TENB", "d": "Tenable"}, {"s": "NASDAQ:CYBR", "d": "CyberArk"}
                     ]
                   }
                 ]
@@ -264,28 +203,42 @@
                 </script>
             </div>
         </div>
-        <p style="font-size: 11px; color: var(--text-muted); margin-top: 8px; line-height: 1.4;">
-            💡 **说明**：免费组件无法将自定义股票池与技术评分合并。实战中，请盯紧此列表的 **涨幅波动**，配合您盈透终端的 VWAP/EMA 指标进行切入。
-        </p>
+
+        <div id="view-screener" class="widget-wrapper" style="display: none;">
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+                {
+                "width": "100%",
+                "height": "100%",
+                "defaultColumn": "technical",
+                "defaultScreen": "most_active",
+                "market": "america",
+                "showToolbar": true,
+                "colorTheme": "dark",
+                "locale": "zh_CN",
+                "isTransparent": true
+                }
+                </script>
+            </div>
+        </div>
+
     </div>
 
     <div class="card">
         <div class="input-group">
-            <label for="price">输入：当前入场单股价格 (Cost Price)</label>
+            <label for="price">输入：入场单股价格 (Cost Price)</label>
             <div class="input-wrapper">
                 <span class="currency">$</span>
                 <input type="number" id="price" placeholder="0.00" step="0.0001" oninput="calculate()">
             </div>
         </div>
-    </div>
-
-    <div class="card">
-        <div class="result-row">
-            <span class="result-label">🛑 单股硬为止损价 (-1.5%)</span>
+        <div class="result-row" style="border-bottom: 1px solid #202330;">
+            <span class="result-label">🛑 硬为止损 (-1.5%)</span>
             <span class="result-value value-loss" id="loss-val">$0.000</span>
         </div>
         <div class="result-row">
-            <span class="result-label">🎯 单股自动止盈价 (+3.0%)</span>
+            <span class="result-label">🎯 自动止盈 (+3.0%)</span>
             <span class="result-value value-profit" id="profit-val">$0.000</span>
         </div>
     </div>
@@ -293,6 +246,22 @@
 </div>
 
 <script>
+// 双核引擎无缝切换逻辑
+function switchTab(tabId) {
+    // 隐藏所有雷达
+    document.getElementById('view-watchlist').style.display = 'none';
+    document.getElementById('view-screener').style.display = 'none';
+    
+    // 取消所有按钮高亮
+    document.getElementById('btn-watchlist').classList.remove('active');
+    document.getElementById('btn-screener').classList.remove('active');
+    
+    // 激活对应的雷达和按钮
+    document.getElementById('view-' + tabId).style.display = 'block';
+    document.getElementById('btn-' + tabId).classList.add('active');
+}
+
+// 止盈止损计算逻辑
 function calculate() {
     const price = parseFloat(document.getElementById('price').value);
     if (isNaN(price) || price <= 0) {
