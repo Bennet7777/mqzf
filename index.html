@@ -79,6 +79,30 @@
 
         .widget-wrapper { width: 100%; height: 500px; border-radius: 12px; overflow: hidden; background: #131722; position: relative; }
         
+        .calc-tab-container {
+            display: flex;
+            background: #202330;
+            border-radius: 8px;
+            padding: 2px;
+            margin-bottom: 12px;
+            border: 1px solid #2d3142;
+        }
+        .calc-tab-btn {
+            flex: 1;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 11px;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .calc-tab-btn.active {
+            background: #2d3142;
+            color: var(--accent-gold);
+        }
+
         .input-group { margin-bottom: 10px; }
         label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
         .input-wrapper { position: relative; display: flex; align-items: center; }
@@ -135,126 +159,36 @@
                 "isTransparent": true,
                 "showSymbolLogo": true,
                 "tabs": [
-                  {
-                    "title": "1.存储硬件",
-                    "symbols": [{"s": "NASDAQ:MU"}, {"s": "NASDAQ:WDC"}, {"s": "NASDAQ:SMCI"}, {"s": "NYSE:STX"}, {"s": "NASDAQ:NTAP"}, {"s": "NASDAQ:ARM"}]
-                  },
-                  {
-                    "title": "2.光通信",
-                    "symbols": [{"s": "NASDAQ:LITE"}, {"s": "NASDAQ:COHR"}, {"s": "NASDAQ:CIEN"}, {"s": "NASDAQ:AAOI"}, {"s": "NYSE:NPTN"}, {"s": "NASDAQ:VIAV"}]
-                  },
-                  {
-                    "title": "3.先进芯片",
-                    "symbols": [{"s": "NASDAQ:NVDA"}, {"s": "NASDAQ:AMD"}, {"s": "NASDAQ:AVGO"}, {"s": "NASDAQ:TSM"}, {"s": "NASDAQ:AMAT"}, {"s": "NASDAQ:ASML"}]
-                  },
-                  {
-                    "title": "4.商业航天",
-                    "symbols": [{"s": "NASDAQ:RKLB"}, {"s": "NASDAQ:SIDU"}, {"s": "NASDAQ:ASTS"}, {"s": "NYSE:SPCE"}, {"s": "NYSE:LLAP"}, {"s": "NASDAQ:LUNR"}]
-                  },
-                  {
-                    "title": "5.关键矿产",
-                    "symbols": [{"s": "NYSE:FCX"}, {"s": "NYSE:CCJ"}, {"s": "NYSE:MP"}, {"s": "NYSE:SQM"}, {"s": "NYSE:ALB"}, {"s": "NYSE:AA"}]
-                  },
-                  {
-                    "title": "6.AI变现",
-                    "symbols": [{"s": "NASDAQ:META"}, {"s": "NASDAQ:APP"}, {"s": "NASDAQ:GOOGL"}, {"s": "NASDAQ:MSFT"}, {"s": "NASDAQ:NFLX"}, {"s": "NASDAQ:TTD"}]
-                  },
-                  {
-                    "title": "7.电力电网",
-                    "symbols": [{"s": "NYSE:VRT"}, {"s": "NYSE:CEG"}, {"s": "NYSE:GEV"}, {"s": "NYSE:BE"}, {"s": "NYSE:VST"}, {"s": "NYSE:PWR"}]
-                  },
-                  {
-                    "title": "8.减肥/医药",
-                    "symbols": [{"s": "NYSE:LLY"}, {"s": "NYSE:NVO"}, {"s": "NASDAQ:MRNA"}, {"s": "NASDAQ:AMGN"}, {"s": "NYSE:PFE"}, {"s": "NASDAQ:VRTX"}]
-                  },
-                  {
-                    "title": "9.网络安全",
-                    "symbols": [{"s": "NASDAQ:CRWD"}, {"s": "NASDAQ:PANW"}, {"s": "NASDAQ:FTNT"}, {"s": "NASDAQ:DDOG"}, {"s": "NASDAQ:ZS"}, {"s": "NASDAQ:NET"}]
-                  },
-                  {
-                    "title": "10.云/SaaS",
-                    "symbols": [{"s": "NASDAQ:SNOW"}, {"s": "NASDAQ:PLTR"}, {"s": "NYSE:CRM"}, {"s": "NYSE:NOW"}, {"s": "NYSE:PATH"}, {"s": "NASDAQ:MDB"}]
-                  },
-                  {
-                    "title": "11.加密货币",
-                    "symbols": [{"s": "NASDAQ:MSTR"}, {"s": "NASDAQ:COIN"}, {"s": "NASDAQ:MARA"}, {"s": "NASDAQ:RIOT"}, {"s": "NASDAQ:CLSK"}, {"s": "NASDAQ:HUT"}]
-                  },
-                  {
-                    "title": "12.自动驾驶",
-                    "symbols": [{"s": "NASDAQ:TSLA"}, {"s": "NASDAQ:RIVN"}, {"s": "NASDAQ:LCID"}, {"s": "NASDAQ:ON"}, {"s": "NYSE:XPEV"}, {"s": "NASDAQ:LI"}]
-                  },
-                  {
-                    "title": "13.金融科技",
-                    "symbols": [{"s": "NASDAQ:PYPL"}, {"s": "NYSE:SQ"}, {"s": "NASDAQ:SOFI"}, {"s": "NYSE:V"}, {"s": "NYSE:MA"}, {"s": "NASDAQ:HOOD"}]
-                  },
-                  {
-                    "title": "14.电商巨头",
-                    "symbols": [{"s": "NASDAQ:AMZN"}, {"s": "NASDAQ:MELI"}, {"s": "NYSE:SE"}, {"s": "NYSE:BABA"}, {"s": "NASDAQ:PDD"}, {"s": "NYSE:SHOP"}]
-                  },
-                  {
-                    "title": "15.传统能源",
-                    "symbols": [{"s": "NYSE:XOM"}, {"s": "NYSE:CVX"}, {"s": "NYSE:OXY"}, {"s": "NYSE:COP"}, {"s": "NYSE:SLB"}, {"s": "NYSE:HAL"}]
-                  },
-                  {
-                    "title": "16.光伏新能源",
-                    "symbols": [{"s": "NASDAQ:FSLR"}, {"s": "NASDAQ:ENPH"}, {"s": "NASDAQ:SEDG"}, {"s": "NASDAQ:RUN"}, {"s": "NYSE:NEE"}, {"s": "NASDAQ:PLUG"}]
-                  },
-                  {
-                    "title": "17.游戏/元宇宙",
-                    "symbols": [{"s": "NYSE:U"}, {"s": "NASDAQ:EA"}, {"s": "NASDAQ:TTWO"}, {"s": "NYSE:RBLX"}, {"s": "NASDAQ:NTES"}, {"s": "NASDAQ:BILI"}]
-                  },
-                  {
-                    "title": "18.共享出行",
-                    "symbols": [{"s": "NYSE:UBER"}, {"s": "NASDAQ:LYFT"}, {"s": "NASDAQ:DASH"}, {"s": "NASDAQ:ABNB"}, {"s": "NASDAQ:CART"}, {"s": "NASDAQ:EXPE"}]
-                  },
-                  {
-                    "title": "19.基因/CXO",
-                    "symbols": [{"s": "NASDAQ:CRSP"}, {"s": "NASDAQ:NTLA"}, {"s": "NASDAQ:ILMN"}, {"s": "NYSE:TMO"}, {"s": "NYSE:DHR"}, {"s": "NASDAQ:PACB"}]
-                  },
-                  {
-                    "title": "20.军工防务",
-                    "symbols": [{"s": "NYSE:LMT"}, {"s": "NYSE:RTX"}, {"s": "NYSE:GD"}, {"s": "NYSE:NOC"}, {"s": "NYSE:LHX"}, {"s": "NYSE:HII"}]
-                  },
-                  {
-                    "title": "21.华尔街投行",
-                    "symbols": [{"s": "NYSE:JPM"}, {"s": "NYSE:GS"}, {"s": "NYSE:MS"}, {"s": "NYSE:BAC"}, {"s": "NYSE:C"}, {"s": "NYSE:WFC"}]
-                  },
-                  {
-                    "title": "22.物流航运",
-                    "symbols": [{"s": "NYSE:UPS"}, {"s": "NYSE:FDX"}, {"s": "NYSE:ZIM"}, {"s": "NYSE:EXPD"}, {"s": "NYSE:XPO"}, {"s": "NYSE:GSL"}]
-                  },
-                  {
-                    "title": "23.医疗器械",
-                    "symbols": [{"s": "NASDAQ:ISRG"}, {"s": "NYSE:SYK"}, {"s": "NYSE:MDT"}, {"s": "NYSE:BSX"}, {"s": "NYSE:EW"}, {"s": "NYSE:ZBH"}]
-                  },
-                  {
-                    "title": "24.消费降级",
-                    "symbols": [{"s": "NYSE:WMT"}, {"s": "NASDAQ:COST"}, {"s": "NYSE:TGT"}, {"s": "NYSE:MCD"}, {"s": "NYSE:DG"}, {"s": "NYSE:DLTR"}]
-                  },
-                  {
-                    "title": "25.运动服饰",
-                    "symbols": [{"s": "NYSE:NKE"}, {"s": "NASDAQ:LULU"}, {"s": "NYSE:UAA"}, {"s": "NYSE:CROX"}, {"s": "NYSE:DECK"}, {"s": "NYSE:ONON"}]
-                  },
-                  {
-                    "title": "26.旅游与航空",
-                    "symbols": [{"s": "NYSE:DAL"}, {"s": "NASDAQ:UAL"}, {"s": "NASDAQ:BKNG"}, {"s": "NYSE:CCL"}, {"s": "NYSE:RCL"}, {"s": "NYSE:LUV"}]
-                  },
-                  {
-                    "title": "27.工业制造",
-                    "symbols": [{"s": "NYSE:CAT"}, {"s": "NYSE:GE"}, {"s": "NYSE:HON"}, {"s": "NYSE:DE"}, {"s": "NYSE:URI"}, {"s": "NYSE:ETN"}]
-                  },
-                  {
-                    "title": "28.农业化肥",
-                    "symbols": [{"s": "NYSE:NTR"}, {"s": "NYSE:MOS"}, {"s": "NYSE:CF"}, {"s": "NYSE:CTVA"}, {"s": "NYSE:FMC"}, {"s": "NYSE:BG"}]
-                  },
-                  {
-                    "title": "29.基础通信",
-                    "symbols": [{"s": "NASDAQ:TMUS"}, {"s": "NYSE:VZ"}, {"s": "NYSE:T"}, {"s": "NASDAQ:CMCSA"}, {"s": "NASDAQ:CHTR"}, {"s": "NYSE:AMT"}]
-                  },
-                  {
-                    "title": "30.大盘波动率",
-                    "symbols": [{"s": "AMEX:SPY"}, {"s": "NASDAQ:QQQ"}, {"s": "AMEX:IWM"}, {"s": "NYSE:VIXY"}, {"s": "NASDAQ:SQQQ"}, {"s": "NASDAQ:TQQQ"}]
-                  }
+                  {"title": "1.存储硬件", "symbols": [{"s": "NASDAQ:MU"}, {"s": "NASDAQ:WDC"}, {"s": "NASDAQ:SMCI"}, {"s": "NYSE:STX"}, {"s": "NASDAQ:NTAP"}, {"s": "NASDAQ:ARM"}]},
+                  {"title": "2.光通信", "symbols": [{"s": "NASDAQ:LITE"}, {"s": "NASDAQ:COHR"}, {"s": "NASDAQ:CIEN"}, {"s": "NASDAQ:AAOI"}, {"s": "NYSE:NPTN"}, {"s": "NASDAQ:VIAV"}]},
+                  {"title": "3.先进芯片", "symbols": [{"s": "NASDAQ:NVDA"}, {"s": "NASDAQ:AMD"}, {"s": "NASDAQ:AVGO"}, {"s": "NASDAQ:TSM"}, {"s": "NASDAQ:AMAT"}, {"s": "NASDAQ:ASML"}]},
+                  {"title": "4.商业航天", "symbols": [{"s": "NASDAQ:RKLB"}, {"s": "NASDAQ:SIDU"}, {"s": "NASDAQ:ASTS"}, {"s": "NYSE:SPCE"}, {"s": "NYSE:LLAP"}, {"s": "NASDAQ:LUNR"}]},
+                  {"title": "5.关键矿产", "symbols": [{"s": "NYSE:FCX"}, {"s": "NYSE:CCJ"}, {"s": "NYSE:MP"}, {"s": "NYSE:SQM"}, {"s": "NYSE:ALB"}, {"s": "NYSE:AA"}]},
+                  {"title": "6.AI变现", "symbols": [{"s": "NASDAQ:META"}, {"s": "NASDAQ:APP"}, {"s": "NASDAQ:GOOGL"}, {"s": "NASDAQ:MSFT"}, {"s": "NASDAQ:NFLX"}, {"s": "NASDAQ:TTD"}]},
+                  {"title": "7.电力电网", "symbols": [{"s": "NYSE:VRT"}, {"s": "NYSE:CEG"}, {"s": "NYSE:GEV"}, {"s": "NYSE:BE"}, {"s": "NYSE:VST"}, {"s": "NYSE:PWR"}]},
+                  {"title": "8.减肥/医药", "symbols": [{"s": "NYSE:LLY"}, {"s": "NYSE:NVO"}, {"s": "NASDAQ:MRNA"}, {"s": "NASDAQ:AMGN"}, {"s": "NYSE:PFE"}, {"s": "NASDAQ:VRTX"}]},
+                  {"title": "9.网络安全", "symbols": [{"s": "NASDAQ:CRWD"}, {"s": "NASDAQ:PANW"}, {"s": "NASDAQ:FTNT"}, {"s": "NASDAQ:DDOG"}, {"s": "NASDAQ:ZS"}, {"s": "NASDAQ:NET"}]},
+                  {"title": "10.云/SaaS", "symbols": [{"s": "NASDAQ:SNOW"}, {"s": "NASDAQ:PLTR"}, {"s": "NYSE:CRM"}, {"s": "NYSE:NOW"}, {"s": "NYSE:PATH"}, {"s": "NASDAQ:MDB"}]},
+                  {"title": "11.加密货币", "symbols": [{"s": "NASDAQ:MSTR"}, {"s": "NASDAQ:COIN"}, {"s": "NASDAQ:MARA"}, {"s": "NASDAQ:RIOT"}, {"s": "NASDAQ:CLSK"}, {"s": "NASDAQ:HUT"}]},
+                  {"title": "12.自动驾驶", "symbols": [{"s": "NASDAQ:TSLA"}, {"s": "NASDAQ:RIVN"}, {"s": "NASDAQ:LCID"}, {"s": "NASDAQ:ON"}, {"s": "NYSE:XPEV"}, {"s": "NASDAQ:LI"}]},
+                  {"title": "13.金融科技", "symbols": [{"s": "NASDAQ:PYPL"}, {"s": "NYSE:SQ"}, {"s": "NASDAQ:SOFI"}, {"s": "NYSE:V"}, {"s": "NYSE:MA"}, {"s": "NASDAQ:HOOD"}]},
+                  {"title": "14.电商巨头", "symbols": [{"s": "NASDAQ:AMZN"}, {"s": "NASDAQ:MELI"}, {"s": "NYSE:SE"}, {"s": "NYSE:BABA"}, {"s": "NASDAQ:PDD"}, {"s": "NYSE:SHOP"}]},
+                  {"title": "15.传统能源", "symbols": [{"s": "NYSE:XOM"}, {"s": "NYSE:CVX"}, {"s": "NYSE:OXY"}, {"s": "NYSE:COP"}, {"s": "NYSE:SLB"}, {"s": "NYSE:HAL"}]},
+                  {"title": "16.光伏新能源", "symbols": [{"s": "NASDAQ:FSLR"}, {"s": "NASDAQ:ENPH"}, {"s": "NASDAQ:SEDG"}, {"s": "NASDAQ:RUN"}, {"s": "NYSE:NEE"}, {"s": "NASDAQ:PLUG"}]},
+                  {"title": "17.游戏/元宇宙", "symbols": [{"s": "NYSE:U"}, {"s": "NASDAQ:EA"}, {"s": "NASDAQ:TTWO"}, {"s": "NYSE:RBLX"}, {"s": "NASDAQ:NTES"}, {"s": "NASDAQ:BILI"}]},
+                  {"title": "18.共享出行", "symbols": [{"s": "NYSE:UBER"}, {"s": "NASDAQ:LYFT"}, {"s": "NASDAQ:DASH"}, {"s": "NASDAQ:ABNB"}, {"s": "NASDAQ:CART"}, {"s": "NASDAQ:EXPE"}]},
+                  {"title": "19.基因/CXO", "symbols": [{"s": "NASDAQ:CRSP"}, {"s": "NASDAQ:NTLA"}, {"s": "NASDAQ:ILMN"}, {"s": "NYSE:TMO"}, {"s": "NYSE:DHR"}, {"s": "NASDAQ:PACB"}]},
+                  {"title": "20.军工防务", "symbols": [{"s": "NYSE:LMT"}, {"s": "NYSE:RTX"}, {"s": "NYSE:GD"}, {"s": "NYSE:NOC"}, {"s": "NYSE:LHX"}, {"s": "NYSE:HII"}]},
+                  {"title": "21.华尔街投行", "symbols": [{"s": "NYSE:JPM"}, {"s": "NYSE:GS"}, {"s": "NYSE:MS"}, {"s": "NYSE:BAC"}, {"s": "NYSE:C"}, {"s": "NYSE:WFC"}]},
+                  {"title": "22.物流航运", "symbols": [{"s": "NYSE:UPS"}, {"s": "NYSE:FDX"}, {"s": "NYSE:ZIM"}, {"s": "NYSE:EXPD"}, {"s": "NYSE:XPO"}, {"s": "NYSE:GSL"}]},
+                  {"title": "23.医疗器械", "symbols": [{"s": "NASDAQ:ISRG"}, {"s": "NYSE:SYK"}, {"s": "NYSE:MDT"}, {"s": "NYSE:BSX"}, {"s": "NYSE:EW"}, {"s": "NYSE:ZBH"}]},
+                  {"title": "24.消费降级", "symbols": [{"s": "NYSE:WMT"}, {"s": "NASDAQ:COST"}, {"s": "NYSE:TGT"}, {"s": "NYSE:MCD"}, {"s": "NYSE:DG"}, {"s": "NYSE:DLTR"}]},
+                  {"title": "25.运动服饰", "symbols": [{"s": "NYSE:NKE"}, {"s": "NASDAQ:LULU"}, {"s": "NYSE:UAA"}, {"s": "NYSE:CROX"}, {"s": "NYSE:DECK"}, {"s": "NYSE:ONON"}]},
+                  {"title": "26.旅游与航空", "symbols": [{"s": "NYSE:DAL"}, {"s": "NASDAQ:UAL"}, {"s": "NASDAQ:BKNG"}, {"s": "NYSE:CCL"}, {"s": "NYSE:RCL"}, {"s": "NYSE:LUV"}]},
+                  {"title": "27.工业制造", "symbols": [{"s": "NYSE:CAT"}, {"s": "NYSE:GE"}, {"s": "NYSE:HON"}, {"s": "NYSE:DE"}, {"s": "NYSE:URI"}, {"s": "NYSE:ETN"}]},
+                  {"title": "28.农业化肥", "symbols": [{"s": "NYSE:NTR"}, {"s": "NYSE:MOS"}, {"s": "NYSE:CF"}, {"s": "NYSE:CTVA"}, {"s": "NYSE:FMC"}, {"s": "NYSE:BG"}]},
+                  {"title": "29.基础通信", "symbols": [{"s": "NASDAQ:TMUS"}, {"s": "NYSE:VZ"}, {"s": "NYSE:T"}, {"s": "NASDAQ:CMCSA"}, {"s": "NASDAQ:CHTR"}, {"s": "NYSE:AMT"}]},
+                  {"title": "30.大盘波动率", "symbols": [{"s": "AMEX:SPY"}, {"s": "NASDAQ:QQQ"}, {"s": "AMEX:IWM"}, {"s": "NYSE:VIXY"}, {"s": "NASDAQ:SQQQ"}, {"s": "NASDAQ:TQQQ"}]}
                 ]
                 }
                 </script>
@@ -295,9 +229,9 @@
                 "allow_symbol_change": true,
                 "calendar": false,
                 "studies": [
-                  "VWAP@tv-basicstudies",
-                  "EMA@tv-basicstudies",
-                  "EMA@tv-basicstudies"
+                  "STD;EMA",
+                  "STD;EMA",
+                  "STD;VWAP"
                 ],
                 "support_host": "https://www.tradingview.com"
                 }
@@ -308,6 +242,11 @@
     </div>
 
     <div class="card">
+        <div class="calc-tab-container">
+            <div class="calc-tab-btn active" id="mode-normal" onclick="setCalcMode('normal')">标准个股 (-1.5% / +3%)</div>
+            <div class="calc-tab-btn" id="mode-etf" onclick="setCalcMode('etf')">杠杆 ETF (-3% / +6%)</div>
+        </div>
+
         <div class="input-group">
             <label for="price">输入：入场单股价格 (Cost Price)</label>
             <div class="input-wrapper">
@@ -316,11 +255,11 @@
             </div>
         </div>
         <div class="result-row" style="border-bottom: 1px solid #202330;">
-            <span class="result-label">🛑 硬为止损 (-1.5%)</span>
+            <span class="result-label" id="loss-label">🛑 硬为止损价 (-1.5%)</span>
             <span class="result-value value-loss" id="loss-val">$0.000</span>
         </div>
         <div class="result-row">
-            <span class="result-label">🎯 自动止盈 (+3.0%)</span>
+            <span class="result-label" id="profit-label">🎯 自动止盈价 (+3.0%)</span>
             <span class="result-value value-profit" id="profit-val">$0.000</span>
         </div>
     </div>
@@ -328,7 +267,24 @@
 </div>
 
 <script>
-// 三核引擎无缝切换逻辑
+let currentCalcMode = 'normal';
+
+function setCalcMode(mode) {
+    currentCalcMode = mode;
+    document.getElementById('mode-normal').classList.remove('active');
+    document.getElementById('mode-etf').classList.remove('active');
+    document.getElementById('mode-' + mode).classList.add('active');
+    
+    if (mode === 'normal') {
+        document.getElementById('loss-label').innerText = '🛑 硬为止损价 (-1.5%)';
+        document.getElementById('profit-label').innerText = '🎯 自动止盈价 (+3.0%)';
+    } else {
+        document.getElementById('loss-label').innerText = '🛑 杠杆放宽止损 (-3.0%)';
+        document.getElementById('profit-label').innerText = '🎯 杠杆扩容止盈 (+6.0%)';
+    }
+    calculate();
+}
+
 function switchTab(tabId) {
     document.getElementById('view-watchlist').style.display = 'none';
     document.getElementById('view-screener').style.display = 'none';
@@ -342,7 +298,6 @@ function switchTab(tabId) {
     document.getElementById('btn-' + tabId).classList.add('active');
 }
 
-// 止盈止损计算逻辑
 function calculate() {
     const price = parseFloat(document.getElementById('price').value);
     if (isNaN(price) || price <= 0) {
@@ -350,8 +305,18 @@ function calculate() {
         document.getElementById('profit-val').innerText = '$0.000';
         return;
     }
-    const lossPrice = price * 0.985;
-    const profitPrice = price * 1.03;
+    
+    let lossMultiplier = 0.985;
+    let profitMultiplier = 1.03;
+    
+    if (currentCalcMode === 'etf') {
+        lossMultiplier = 0.97;
+        profitMultiplier = 1.06;
+    }
+    
+    const lossPrice = price * lossMultiplier;
+    const profitPrice = price * profitMultiplier;
+    
     document.getElementById('loss-val').innerText = '$' + lossPrice.toFixed(3);
     document.getElementById('profit-val').innerText = '$' + profitPrice.toFixed(3);
 }
