@@ -1,325 +1,248 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>麻雀战法 · 三核全景狙击终端</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>麻雀战法 · Pro Terminal</title>
     <style>
         :root {
-            --bg-color: #0d0e12;
-            --card-bg: #161820;
-            --accent-gold: #d4af37;
-            --text-main: #ffffff;
-            --text-muted: #8a8d99;
-            --red-down: #ff4d4f;
-            --green-up: #2ed573;
-            --tab-bg: #202330;
+            --bg-base: #0a0b0e;
+            --bg-surface: #151822;
+            --bg-elevated: #1e2230;
+            --gold-accent: #d4af37;
+            --text-primary: #ffffff;
+            --text-secondary: #8b92a5;
+            --semantic-red: #ff3b30;
+            --semantic-green: #34c759;
+            --radius-lg: 16px;
+            --radius-md: 10px;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: var(--bg-base);
+            color: var(--text-primary);
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-        
-        .discipline-bar {
-            width: 100%;
-            background: rgba(255, 77, 79, 0.15);
-            border-bottom: 1px solid var(--red-down);
-            color: var(--red-down);
-            font-size: 13px;
-            font-weight: bold;
-            padding: 8px 0;
-            overflow: hidden;
-            white-space: nowrap;
-            z-index: 999;
-        }
-        .marquee {
-            display: inline-block;
-            padding-left: 100%;
-            animation: marquee 20s linear infinite;
-        }
-        @keyframes marquee {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
-        }
-        
-        .container { width: 100%; max-width: 430px; padding: 12px; display: flex; flex-direction: column; flex: 1; }
-        h1 { font-size: 20px; font-weight: 600; color: var(--accent-gold); margin-bottom: 4px; text-align: center; }
-        .subtitle { font-size: 11px; color: var(--text-muted); text-align: center; margin-bottom: 16px; }
-        .card { background: var(--card-bg); border-radius: 16px; padding: 14px; margin-bottom: 12px; border: 1px solid #262938; }
-        
-        .tab-container {
-            display: flex;
-            background: var(--tab-bg);
-            border-radius: 12px;
-            padding: 4px;
-            margin-bottom: 12px;
-        }
-        .tab-btn {
-            flex: 1;
-            text-align: center;
-            padding: 10px 0;
-            color: var(--text-muted);
-            font-size: 13px;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-        .tab-btn.active {
-            background: var(--accent-gold);
-            color: #0d0e12;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            display: flex; flex-direction: column; min-height: 100vh; padding-bottom: env(safe-area-inset-bottom);
         }
 
-        .widget-wrapper { width: 100%; height: 500px; border-radius: 12px; overflow: hidden; background: #131722; position: relative; }
-        
-        .calc-tab-container {
-            display: flex;
-            background: #202330;
-            border-radius: 8px;
-            padding: 2px;
-            margin-bottom: 12px;
-            border: 1px solid #2d3142;
+        /* 顶部纪律警告栏 - 极简风 */
+        .marquee-bar {
+            background: rgba(255, 59, 48, 0.1); border-bottom: 1px solid rgba(255, 59, 48, 0.3);
+            color: var(--semantic-red); font-size: 13px; font-weight: 600; padding: 8px 0;
+            overflow: hidden; white-space: nowrap; width: 100%; z-index: 100;
         }
-        .calc-tab-btn {
-            flex: 1;
-            text-align: center;
-            padding: 8px 0;
-            font-size: 11px;
-            color: var(--text-muted);
-            cursor: pointer;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: all 0.2s;
-        }
-        .calc-tab-btn.active {
-            background: #2d3142;
-            color: var(--accent-gold);
-        }
+        .marquee-content { display: inline-block; padding-left: 100%; animation: scroll-left 20s linear infinite; }
+        @keyframes scroll-left { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
 
-        .input-group { margin-bottom: 10px; }
-        label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
-        .input-wrapper { position: relative; display: flex; align-items: center; }
-        .currency { position: absolute; left: 14px; color: var(--text-muted); font-size: 16px; }
-        input {
-            width: 100%;
-            background: #202330;
-            border: 1px solid #2d3142;
-            border-radius: 10px;
-            padding: 10px 14px 10px 32px;
-            color: #fff;
-            font-size: 16px;
-            outline: none;
-            transition: border 0.2s;
-        }
-        input:focus { border-color: var(--accent-gold); }
-        .result-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #202330; }
-        .result-row:last-child { border-bottom: none; }
-        .result-label { font-size: 13px; color: var(--text-muted); }
-        .result-value { font-size: 18px; font-weight: 700; font-family: monospace; }
-        .value-loss { color: var(--red-down); }
-        .value-profit { color: var(--green-up); }
+        .main-container { width: 100%; max-width: 440px; margin: 0 auto; padding: 16px 14px; flex: 1; display: flex; flex-direction: column; }
+        
+        /* 标题区 */
+        .header { text-align: center; margin-bottom: 20px; }
+        .header h1 { font-size: 22px; font-weight: 700; color: var(--gold-accent); letter-spacing: 0.5px; margin-bottom: 4px; }
+        .header p { font-size: 12px; color: var(--text-secondary); }
+
+        /* 卡片容器 */
+        .card { background: var(--bg-surface); border-radius: var(--radius-lg); padding: 14px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+
+        /* iOS 原生级 Segmented Control */
+        .segmented-control { display: flex; background: var(--bg-elevated); border-radius: var(--radius-md); padding: 3px; margin-bottom: 14px; position: relative; }
+        .segment-btn { flex: 1; text-align: center; padding: 10px 0; font-size: 13px; font-weight: 600; color: var(--text-secondary); border-radius: 8px; cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); z-index: 2; position: relative; }
+        .segment-btn.active { color: #000; background: var(--gold-accent); box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3); }
+
+        /* 雷达与图表展示区 */
+        .widget-container { width: 100%; height: 520px; border-radius: var(--radius-md); overflow: hidden; background: #131722; position: relative; }
+        .widget-view { display: none; width: 100%; height: 100%; }
+        .widget-view.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* 计算器专属样式 */
+        .calc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .calc-title { font-size: 13px; font-weight: 600; color: var(--gold-accent); }
+        .calc-mode-switch { display: flex; background: var(--bg-elevated); border-radius: 6px; padding: 2px; }
+        .calc-mode-btn { padding: 6px 12px; font-size: 11px; font-weight: 600; color: var(--text-secondary); border-radius: 4px; transition: all 0.2s; }
+        .calc-mode-btn.active { background: #2c3140; color: #fff; }
+
+        .input-group { position: relative; margin-bottom: 16px; }
+        .input-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--text-secondary); }
+        .price-input { width: 100%; background: var(--bg-elevated); border: 1.5px solid transparent; border-radius: var(--radius-md); padding: 14px 14px 14px 34px; font-size: 18px; font-weight: 600; color: #fff; outline: none; transition: all 0.2s; -webkit-appearance: none; }
+        .price-input:focus { border-color: var(--gold-accent); background: #252a38; }
+        .price-input::placeholder { color: #4a5063; font-weight: 400; }
+
+        .result-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .result-row:last-child { border-bottom: none; padding-bottom: 4px; }
+        .result-label { font-size: 13px; color: var(--text-secondary); font-weight: 500; display: flex; align-items: center; gap: 6px; }
+        .result-value { font-size: 20px; font-weight: 700; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+        .text-red { color: var(--semantic-red); }
+        .text-green { color: var(--semantic-green); }
     </style>
 </head>
 <body>
 
-<div class="discipline-bar">
-    <div class="marquee">⚠️ 交易纪律至上：坚决执行系统信号！杜绝抗单！杜绝凭感觉加仓！保护本金是生存的第一要务！ ⚠️</div>
+<div class="marquee-bar">
+    <div class="marquee-content">⚠️ 交易纪律：无脑执行金叉破 VWAP！截断亏损！让利润奔跑！ ⚠️</div>
 </div>
 
-<div class="container">
-    <h1>麻雀战法 · 全景战控</h1>
-    <div class="subtitle">三位一体：30大阵地监控 ↔ 异动雷达 ↔ K线狙击</div>
+<div class="main-container">
+    <div class="header">
+        <h1>麻雀战法 · Pro</h1>
+        <p>30大阵地 ↔ 自动雷达 ↔ K线狙击</p>
+    </div>
 
-    <div class="tab-container">
-        <div class="tab-btn active" id="btn-watchlist" onclick="switchTab('watchlist')">📡 30大阵地</div>
-        <div class="tab-btn" id="btn-screener" onclick="switchTab('screener')">🎯 信号雷达</div>
-        <div class="tab-btn" id="btn-chart" onclick="switchTab('chart')">📈 狙击看盘</div>
+    <div class="segmented-control">
+        <div class="segment-btn active" id="tab-btn-watchlist" onclick="App.switchTab('watchlist')">📡 阵地</div>
+        <div class="segment-btn" id="tab-btn-screener" onclick="App.switchTab('screener')">🎯 雷达</div>
+        <div class="segment-btn" id="tab-btn-chart" onclick="App.switchTab('chart')">📈 狙击图</div>
     </div>
 
     <div class="card" style="padding: 10px;">
-        
-        <div id="view-watchlist" class="widget-wrapper">
-            <div class="tradingview-widget-container">
-                <div class="tradingview-widget-container__widget"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-                {
-                "colorTheme": "dark",
-                "dateRange": "1D",
-                "showChart": false,
-                "locale": "zh_CN",
-                "width": "100%",
-                "height": "100%",
-                "isTransparent": true,
-                "showSymbolLogo": true,
-                "tabs": [
-                  {"title": "1.存储硬件", "symbols": [{"s": "NASDAQ:MU"}, {"s": "NASDAQ:WDC"}, {"s": "NASDAQ:SMCI"}, {"s": "NYSE:STX"}, {"s": "NASDAQ:NTAP"}, {"s": "NASDAQ:ARM"}]},
-                  {"title": "2.光通信", "symbols": [{"s": "NASDAQ:LITE"}, {"s": "NASDAQ:COHR"}, {"s": "NASDAQ:CIEN"}, {"s": "NASDAQ:AAOI"}, {"s": "NYSE:NPTN"}, {"s": "NASDAQ:VIAV"}]},
-                  {"title": "3.先进芯片", "symbols": [{"s": "NASDAQ:NVDA"}, {"s": "NASDAQ:AMD"}, {"s": "NASDAQ:AVGO"}, {"s": "NASDAQ:TSM"}, {"s": "NASDAQ:AMAT"}, {"s": "NASDAQ:ASML"}]},
-                  {"title": "4.商业航天", "symbols": [{"s": "NASDAQ:RKLB"}, {"s": "NASDAQ:SIDU"}, {"s": "NASDAQ:ASTS"}, {"s": "NYSE:SPCE"}, {"s": "NYSE:LLAP"}, {"s": "NASDAQ:LUNR"}]},
-                  {"title": "5.关键矿产", "symbols": [{"s": "NYSE:FCX"}, {"s": "NYSE:CCJ"}, {"s": "NYSE:MP"}, {"s": "NYSE:SQM"}, {"s": "NYSE:ALB"}, {"s": "NYSE:AA"}]},
-                  {"title": "6.AI变现", "symbols": [{"s": "NASDAQ:META"}, {"s": "NASDAQ:APP"}, {"s": "NASDAQ:GOOGL"}, {"s": "NASDAQ:MSFT"}, {"s": "NASDAQ:NFLX"}, {"s": "NASDAQ:TTD"}]},
-                  {"title": "7.电力电网", "symbols": [{"s": "NYSE:VRT"}, {"s": "NYSE:CEG"}, {"s": "NYSE:GEV"}, {"s": "NYSE:BE"}, {"s": "NYSE:VST"}, {"s": "NYSE:PWR"}]},
-                  {"title": "8.减肥/医药", "symbols": [{"s": "NYSE:LLY"}, {"s": "NYSE:NVO"}, {"s": "NASDAQ:MRNA"}, {"s": "NASDAQ:AMGN"}, {"s": "NYSE:PFE"}, {"s": "NASDAQ:VRTX"}]},
-                  {"title": "9.网络安全", "symbols": [{"s": "NASDAQ:CRWD"}, {"s": "NASDAQ:PANW"}, {"s": "NASDAQ:FTNT"}, {"s": "NASDAQ:DDOG"}, {"s": "NASDAQ:ZS"}, {"s": "NASDAQ:NET"}]},
-                  {"title": "10.云/SaaS", "symbols": [{"s": "NASDAQ:SNOW"}, {"s": "NASDAQ:PLTR"}, {"s": "NYSE:CRM"}, {"s": "NYSE:NOW"}, {"s": "NYSE:PATH"}, {"s": "NASDAQ:MDB"}]},
-                  {"title": "11.加密货币", "symbols": [{"s": "NASDAQ:MSTR"}, {"s": "NASDAQ:COIN"}, {"s": "NASDAQ:MARA"}, {"s": "NASDAQ:RIOT"}, {"s": "NASDAQ:CLSK"}, {"s": "NASDAQ:HUT"}]},
-                  {"title": "12.自动驾驶", "symbols": [{"s": "NASDAQ:TSLA"}, {"s": "NASDAQ:RIVN"}, {"s": "NASDAQ:LCID"}, {"s": "NASDAQ:ON"}, {"s": "NYSE:XPEV"}, {"s": "NASDAQ:LI"}]},
-                  {"title": "13.金融科技", "symbols": [{"s": "NASDAQ:PYPL"}, {"s": "NYSE:SQ"}, {"s": "NASDAQ:SOFI"}, {"s": "NYSE:V"}, {"s": "NYSE:MA"}, {"s": "NASDAQ:HOOD"}]},
-                  {"title": "14.电商巨头", "symbols": [{"s": "NASDAQ:AMZN"}, {"s": "NASDAQ:MELI"}, {"s": "NYSE:SE"}, {"s": "NYSE:BABA"}, {"s": "NASDAQ:PDD"}, {"s": "NYSE:SHOP"}]},
-                  {"title": "15.传统能源", "symbols": [{"s": "NYSE:XOM"}, {"s": "NYSE:CVX"}, {"s": "NYSE:OXY"}, {"s": "NYSE:COP"}, {"s": "NYSE:SLB"}, {"s": "NYSE:HAL"}]},
-                  {"title": "16.光伏新能源", "symbols": [{"s": "NASDAQ:FSLR"}, {"s": "NASDAQ:ENPH"}, {"s": "NASDAQ:SEDG"}, {"s": "NASDAQ:RUN"}, {"s": "NYSE:NEE"}, {"s": "NASDAQ:PLUG"}]},
-                  {"title": "17.游戏/元宇宙", "symbols": [{"s": "NYSE:U"}, {"s": "NASDAQ:EA"}, {"s": "NASDAQ:TTWO"}, {"s": "NYSE:RBLX"}, {"s": "NASDAQ:NTES"}, {"s": "NASDAQ:BILI"}]},
-                  {"title": "18.共享出行", "symbols": [{"s": "NYSE:UBER"}, {"s": "NASDAQ:LYFT"}, {"s": "NASDAQ:DASH"}, {"s": "NASDAQ:ABNB"}, {"s": "NASDAQ:CART"}, {"s": "NASDAQ:EXPE"}]},
-                  {"title": "19.基因/CXO", "symbols": [{"s": "NASDAQ:CRSP"}, {"s": "NASDAQ:NTLA"}, {"s": "NASDAQ:ILMN"}, {"s": "NYSE:TMO"}, {"s": "NYSE:DHR"}, {"s": "NASDAQ:PACB"}]},
-                  {"title": "20.军工防务", "symbols": [{"s": "NYSE:LMT"}, {"s": "NYSE:RTX"}, {"s": "NYSE:GD"}, {"s": "NYSE:NOC"}, {"s": "NYSE:LHX"}, {"s": "NYSE:HII"}]},
-                  {"title": "21.华尔街投行", "symbols": [{"s": "NYSE:JPM"}, {"s": "NYSE:GS"}, {"s": "NYSE:MS"}, {"s": "NYSE:BAC"}, {"s": "NYSE:C"}, {"s": "NYSE:WFC"}]},
-                  {"title": "22.物流航运", "symbols": [{"s": "NYSE:UPS"}, {"s": "NYSE:FDX"}, {"s": "NYSE:ZIM"}, {"s": "NYSE:EXPD"}, {"s": "NYSE:XPO"}, {"s": "NYSE:GSL"}]},
-                  {"title": "23.医疗器械", "symbols": [{"s": "NASDAQ:ISRG"}, {"s": "NYSE:SYK"}, {"s": "NYSE:MDT"}, {"s": "NYSE:BSX"}, {"s": "NYSE:EW"}, {"s": "NYSE:ZBH"}]},
-                  {"title": "24.消费降级", "symbols": [{"s": "NYSE:WMT"}, {"s": "NASDAQ:COST"}, {"s": "NYSE:TGT"}, {"s": "NYSE:MCD"}, {"s": "NYSE:DG"}, {"s": "NYSE:DLTR"}]},
-                  {"title": "25.运动服饰", "symbols": [{"s": "NYSE:NKE"}, {"s": "NASDAQ:LULU"}, {"s": "NYSE:UAA"}, {"s": "NYSE:CROX"}, {"s": "NYSE:DECK"}, {"s": "NYSE:ONON"}]},
-                  {"title": "26.旅游与航空", "symbols": [{"s": "NYSE:DAL"}, {"s": "NASDAQ:UAL"}, {"s": "NASDAQ:BKNG"}, {"s": "NYSE:CCL"}, {"s": "NYSE:RCL"}, {"s": "NYSE:LUV"}]},
-                  {"title": "27.工业制造", "symbols": [{"s": "NYSE:CAT"}, {"s": "NYSE:GE"}, {"s": "NYSE:HON"}, {"s": "NYSE:DE"}, {"s": "NYSE:URI"}, {"s": "NYSE:ETN"}]},
-                  {"title": "28.农业化肥", "symbols": [{"s": "NYSE:NTR"}, {"s": "NYSE:MOS"}, {"s": "NYSE:CF"}, {"s": "NYSE:CTVA"}, {"s": "NYSE:FMC"}, {"s": "NYSE:BG"}]},
-                  {"title": "29.基础通信", "symbols": [{"s": "NASDAQ:TMUS"}, {"s": "NYSE:VZ"}, {"s": "NYSE:T"}, {"s": "NASDAQ:CMCSA"}, {"s": "NASDAQ:CHTR"}, {"s": "NYSE:AMT"}]},
-                  {"title": "30.大盘波动率", "symbols": [{"s": "AMEX:SPY"}, {"s": "NASDAQ:QQQ"}, {"s": "AMEX:IWM"}, {"s": "NYSE:VIXY"}, {"s": "NASDAQ:SQQQ"}, {"s": "NASDAQ:TQQQ"}]}
-                ]
-                }
-                </script>
+        <div class="widget-container">
+            
+            <div id="view-watchlist" class="widget-view active">
+                <div class="tradingview-widget-container">
+                    <div class="tradingview-widget-container__widget"></div>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+                    {
+                    "colorTheme": "dark", "dateRange": "1D", "showChart": false, "locale": "zh_CN", "width": "100%", "height": "100%", "isTransparent": true, "showSymbolLogo": true,
+                    "tabs": [
+                      {"title": "1.存储", "symbols": [{"s": "NASDAQ:MU"},{"s": "NASDAQ:WDC"},{"s": "NASDAQ:SMCI"},{"s": "NYSE:STX"},{"s": "NASDAQ:NTAP"},{"s": "NASDAQ:ARM"}]},
+                      {"title": "2.光通信", "symbols": [{"s": "NASDAQ:LITE"},{"s": "NASDAQ:COHR"},{"s": "NASDAQ:CIEN"},{"s": "NASDAQ:AAOI"},{"s": "NYSE:NPTN"},{"s": "NASDAQ:VIAV"}]},
+                      {"title": "3.芯片", "symbols": [{"s": "NASDAQ:NVDA"},{"s": "NASDAQ:AMD"},{"s": "NASDAQ:AVGO"},{"s": "NASDAQ:TSM"},{"s": "NASDAQ:AMAT"},{"s": "NASDAQ:ASML"}]},
+                      {"title": "4.航天", "symbols": [{"s": "NASDAQ:RKLB"},{"s": "NASDAQ:SIDU"},{"s": "NASDAQ:ASTS"},{"s": "NYSE:SPCE"},{"s": "NYSE:LLAP"},{"s": "NASDAQ:LUNR"}]},
+                      {"title": "5.矿产", "symbols": [{"s": "NYSE:FCX"},{"s": "NYSE:CCJ"},{"s": "NYSE:MP"},{"s": "NYSE:SQM"},{"s": "NYSE:ALB"},{"s": "NYSE:AA"}]},
+                      {"title": "6.AI变现", "symbols": [{"s": "NASDAQ:META"},{"s": "NASDAQ:APP"},{"s": "NASDAQ:GOOGL"},{"s": "NASDAQ:MSFT"},{"s": "NASDAQ:NFLX"},{"s": "NASDAQ:TTD"}]},
+                      {"title": "7.电力", "symbols": [{"s": "NYSE:VRT"},{"s": "NYSE:CEG"},{"s": "NYSE:GEV"},{"s": "NYSE:BE"},{"s": "NYSE:VST"},{"s": "NYSE:PWR"}]},
+                      {"title": "8.医药", "symbols": [{"s": "NYSE:LLY"},{"s": "NYSE:NVO"},{"s": "NASDAQ:MRNA"},{"s": "NASDAQ:AMGN"},{"s": "NYSE:PFE"},{"s": "NASDAQ:VRTX"}]},
+                      {"title": "9.安全", "symbols": [{"s": "NASDAQ:CRWD"},{"s": "NASDAQ:PANW"},{"s": "NASDAQ:FTNT"},{"s": "NASDAQ:DDOG"},{"s": "NASDAQ:ZS"},{"s": "NASDAQ:NET"}]},
+                      {"title": "10.SaaS", "symbols": [{"s": "NASDAQ:SNOW"},{"s": "NASDAQ:PLTR"},{"s": "NYSE:CRM"},{"s": "NYSE:NOW"},{"s": "NYSE:PATH"},{"s": "NASDAQ:MDB"}]},
+                      {"title": "11.加密", "symbols": [{"s": "NASDAQ:MSTR"},{"s": "NASDAQ:COIN"},{"s": "NASDAQ:MARA"},{"s": "NASDAQ:RIOT"},{"s": "NASDAQ:CLSK"},{"s": "NASDAQ:HUT"}]},
+                      {"title": "12.自动驾驶", "symbols": [{"s": "NASDAQ:TSLA"},{"s": "NASDAQ:RIVN"},{"s": "NASDAQ:LCID"},{"s": "NASDAQ:ON"},{"s": "NYSE:XPEV"},{"s": "NASDAQ:LI"}]},
+                      {"title": "13.金融", "symbols": [{"s": "NASDAQ:PYPL"},{"s": "NYSE:SQ"},{"s": "NASDAQ:SOFI"},{"s": "NYSE:V"},{"s": "NYSE:MA"},{"s": "NASDAQ:HOOD"}]},
+                      {"title": "14.电商", "symbols": [{"s": "NASDAQ:AMZN"},{"s": "NASDAQ:MELI"},{"s": "NYSE:SE"},{"s": "NYSE:BABA"},{"s": "NASDAQ:PDD"},{"s": "NYSE:SHOP"}]},
+                      {"title": "15.能源", "symbols": [{"s": "NYSE:XOM"},{"s": "NYSE:CVX"},{"s": "NYSE:OXY"},{"s": "NYSE:COP"},{"s": "NYSE:SLB"},{"s": "NYSE:HAL"}]},
+                      {"title": "16.光伏", "symbols": [{"s": "NASDAQ:FSLR"},{"s": "NASDAQ:ENPH"},{"s": "NASDAQ:SEDG"},{"s": "NASDAQ:RUN"},{"s": "NYSE:NEE"},{"s": "NASDAQ:PLUG"}]},
+                      {"title": "17.游戏", "symbols": [{"s": "NYSE:U"},{"s": "NASDAQ:EA"},{"s": "NASDAQ:TTWO"},{"s": "NYSE:RBLX"},{"s": "NASDAQ:NTES"},{"s": "NASDAQ:BILI"}]},
+                      {"title": "18.出行", "symbols": [{"s": "NYSE:UBER"},{"s": "NASDAQ:LYFT"},{"s": "NASDAQ:DASH"},{"s": "NASDAQ:ABNB"},{"s": "NASDAQ:CART"},{"s": "NASDAQ:EXPE"}]},
+                      {"title": "19.CXO", "symbols": [{"s": "NASDAQ:CRSP"},{"s": "NASDAQ:NTLA"},{"s": "NASDAQ:ILMN"},{"s": "NYSE:TMO"},{"s": "NYSE:DHR"},{"s": "NASDAQ:PACB"}]},
+                      {"title": "20.军工", "symbols": [{"s": "NYSE:LMT"},{"s": "NYSE:RTX"},{"s": "NYSE:GD"},{"s": "NYSE:NOC"},{"s": "NYSE:LHX"},{"s": "NYSE:HII"}]},
+                      {"title": "21.投行", "symbols": [{"s": "NYSE:JPM"},{"s": "NYSE:GS"},{"s": "NYSE:MS"},{"s": "NYSE:BAC"},{"s": "NYSE:C"},{"s": "NYSE:WFC"}]},
+                      {"title": "22.航运", "symbols": [{"s": "NYSE:UPS"},{"s": "NYSE:FDX"},{"s": "NYSE:ZIM"},{"s": "NYSE:EXPD"},{"s": "NYSE:XPO"},{"s": "NYSE:GSL"}]},
+                      {"title": "23.器械", "symbols": [{"s": "NASDAQ:ISRG"},{"s": "NYSE:SYK"},{"s": "NYSE:MDT"},{"s": "NYSE:BSX"},{"s": "NYSE:EW"},{"s": "NYSE:ZBH"}]},
+                      {"title": "24.消费", "symbols": [{"s": "NYSE:WMT"},{"s": "NASDAQ:COST"},{"s": "NYSE:TGT"},{"s": "NYSE:MCD"},{"s": "NYSE:DG"},{"s": "NYSE:DLTR"}]},
+                      {"title": "25.服饰", "symbols": [{"s": "NYSE:NKE"},{"s": "NASDAQ:LULU"},{"s": "NYSE:UAA"},{"s": "NYSE:CROX"},{"s": "NYSE:DECK"},{"s": "NYSE:ONON"}]},
+                      {"title": "26.旅游", "symbols": [{"s": "NYSE:DAL"},{"s": "NASDAQ:UAL"},{"s": "NASDAQ:BKNG"},{"s": "NYSE:CCL"},{"s": "NYSE:RCL"},{"s": "NYSE:LUV"}]},
+                      {"title": "27.工业", "symbols": [{"s": "NYSE:CAT"},{"s": "NYSE:GE"},{"s": "NYSE:HON"},{"s": "NYSE:DE"},{"s": "NYSE:URI"},{"s": "NYSE:ETN"}]},
+                      {"title": "28.农业", "symbols": [{"s": "NYSE:NTR"},{"s": "NYSE:MOS"},{"s": "NYSE:CF"},{"s": "NYSE:CTVA"},{"s": "NYSE:FMC"},{"s": "NYSE:BG"}]},
+                      {"title": "29.通信", "symbols": [{"s": "NASDAQ:TMUS"},{"s": "NYSE:VZ"},{"s": "NYSE:T"},{"s": "NASDAQ:CMCSA"},{"s": "NASDAQ:CHTR"},{"s": "NYSE:AMT"}]},
+                      {"title": "30.波动率", "symbols": [{"s": "AMEX:SPY"},{"s": "NASDAQ:QQQ"},{"s": "AMEX:IWM"},{"s": "NYSE:VIXY"},{"s": "NASDAQ:SQQQ"},{"s": "NASDAQ:TQQQ"}]}
+                    ]
+                    }
+                    </script>
+                </div>
             </div>
-        </div>
 
-        <div id="view-screener" class="widget-wrapper" style="display: none;">
-            <div class="tradingview-widget-container">
-                <div class="tradingview-widget-container__widget"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
-                {
-                "width": "100%",
-                "height": "100%",
-                "defaultColumn": "technical",
-                "defaultScreen": "most_active",
-                "market": "america",
-                "showToolbar": true,
-                "colorTheme": "dark",
-                "locale": "zh_CN",
-                "isTransparent": true
-                }
-                </script>
+            <div id="view-screener" class="widget-view">
+                <div class="tradingview-widget-container">
+                    <div class="tradingview-widget-container__widget"></div>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+                    { "width": "100%", "height": "100%", "defaultColumn": "technical", "defaultScreen": "most_active", "market": "america", "showToolbar": true, "colorTheme": "dark", "locale": "zh_CN", "isTransparent": true }
+                    </script>
+                </div>
             </div>
-        </div>
 
-        <div id="view-chart" class="widget-wrapper" style="display: none;">
-            <div class="tradingview-widget-container">
-                <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-                {
-                "autosize": true,
-                "symbol": "NASDAQ:NVDA",
-                "interval": "1",
-                "timezone": "America/New_York",
-                "theme": "dark",
-                "style": "1",
-                "locale": "zh_CN",
-                "allow_symbol_change": true,
-                "calendar": false,
-                "studies": [
-                  "STD;EMA",
-                  "STD;EMA",
-                  "STD;VWAP"
-                ],
-                "support_host": "https://www.tradingview.com"
-                }
-                </script>
+            <div id="view-chart" class="widget-view">
+                <div class="tradingview-widget-container">
+                    <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                    { "autosize": true, "symbol": "NASDAQ:NVDA", "interval": "1", "timezone": "America/New_York", "theme": "dark", "style": "1", "locale": "zh_CN", "allow_symbol_change": true, "calendar": false, "support_host": "https://www.tradingview.com",
+                      "studies": ["STD;EMA", "STD;EMA", "STD;VWAP"]
+                    }
+                    </script>
+                </div>
             </div>
-        </div>
 
+        </div>
     </div>
 
     <div class="card">
-        <div class="calc-tab-container">
-            <div class="calc-tab-btn active" id="mode-normal" onclick="setCalcMode('normal')">标准个股 (-1.5% / +3%)</div>
-            <div class="calc-tab-btn" id="mode-etf" onclick="setCalcMode('etf')">杠杆 ETF (-3% / +6%)</div>
+        <div class="calc-header">
+            <span class="calc-title">量化风控模块</span>
+            <div class="calc-mode-switch">
+                <div class="calc-mode-btn active" id="calc-mode-normal" onclick="App.setCalcMode('normal')">正股</div>
+                <div class="calc-mode-btn" id="calc-mode-etf" onclick="App.setCalcMode('etf')">2X ETF</div>
+            </div>
         </div>
 
         <div class="input-group">
-            <label for="price">输入：入场单股价格 (Cost Price)</label>
-            <div class="input-wrapper">
-                <span class="currency">$</span>
-                <input type="number" id="price" placeholder="0.00" step="0.0001" oninput="calculate()">
-            </div>
+            <span class="input-icon">$</span>
+            <input type="number" id="price-input" class="price-input" placeholder="输入入场价格" step="0.0001" inputmode="decimal">
         </div>
-        <div class="result-row" style="border-bottom: 1px solid #202330;">
-            <span class="result-label" id="loss-label">🛑 硬为止损价 (-1.5%)</span>
-            <span class="result-value value-loss" id="loss-val">$0.000</span>
+
+        <div class="result-row">
+            <span class="result-label"><span style="font-size:16px">🛑</span> <span id="label-loss">硬止损 (-1.5%)</span></span>
+            <span class="result-value text-red" id="val-loss">$0.000</span>
         </div>
         <div class="result-row">
-            <span class="result-label" id="profit-label">🎯 自动止盈价 (+3.0%)</span>
-            <span class="result-value value-profit" id="profit-val">$0.000</span>
+            <span class="result-label"><span style="font-size:16px">🎯</span> <span id="label-profit">自动止盈 (+3.0%)</span></span>
+            <span class="result-value text-green" id="val-profit">$0.000</span>
         </div>
     </div>
 
 </div>
 
 <script>
-let currentCalcMode = 'normal';
+// 极简 Pro 级 JS 逻辑控制器
+const App = {
+    mode: 'normal',
+    views: ['watchlist', 'screener', 'chart'],
+    
+    init() {
+        document.getElementById('price-input').addEventListener('input', this.calculate.bind(this));
+    },
 
-function setCalcMode(mode) {
-    currentCalcMode = mode;
-    document.getElementById('mode-normal').classList.remove('active');
-    document.getElementById('mode-etf').classList.remove('active');
-    document.getElementById('mode-' + mode).classList.add('active');
-    
-    if (mode === 'normal') {
-        document.getElementById('loss-label').innerText = '🛑 硬为止损价 (-1.5%)';
-        document.getElementById('profit-label').innerText = '🎯 自动止盈价 (+3.0%)';
-    } else {
-        document.getElementById('loss-label').innerText = '🛑 杠杆放宽止损 (-3.0%)';
-        document.getElementById('profit-label').innerText = '🎯 杠杆扩容止盈 (+6.0%)';
-    }
-    calculate();
-}
+    switchTab(targetId) {
+        // UI 更新
+        this.views.forEach(id => {
+            document.getElementById(`tab-btn-${id}`).classList.toggle('active', id === targetId);
+            document.getElementById(`view-${id}`).classList.toggle('active', id === targetId);
+        });
+    },
 
-function switchTab(tabId) {
-    document.getElementById('view-watchlist').style.display = 'none';
-    document.getElementById('view-screener').style.display = 'none';
-    document.getElementById('view-chart').style.display = 'none';
-    
-    document.getElementById('btn-watchlist').classList.remove('active');
-    document.getElementById('btn-screener').classList.remove('active');
-    document.getElementById('btn-chart').classList.remove('active');
-    
-    document.getElementById('view-' + tabId).style.display = 'block';
-    document.getElementById('btn-' + tabId).classList.add('active');
-}
+    setCalcMode(targetMode) {
+        this.mode = targetMode;
+        // 样式切换
+        document.getElementById('calc-mode-normal').classList.toggle('active', targetMode === 'normal');
+        document.getElementById('calc-mode-etf').classList.toggle('active', targetMode === 'etf');
+        // 文本更新
+        document.getElementById('label-loss').innerText = targetMode === 'normal' ? '硬止损 (-1.5%)' : '杠杆止损 (-3.0%)';
+        document.getElementById('label-profit').innerText = targetMode === 'normal' ? '自动止盈 (+3.0%)' : '杠杆止盈 (+6.0%)';
+        // 触发重算
+        this.calculate();
+    },
 
-function calculate() {
-    const price = parseFloat(document.getElementById('price').value);
-    if (isNaN(price) || price <= 0) {
-        document.getElementById('loss-val').innerText = '$0.000';
-        document.getElementById('profit-val').innerText = '$0.000';
-        return;
+    calculate() {
+        const inputVal = document.getElementById('price-input').value;
+        const price = parseFloat(inputVal);
+        
+        // 防呆：处理空值或非法输入
+        if (isNaN(price) || price <= 0) {
+            document.getElementById('val-loss').innerText = '$0.000';
+            document.getElementById('val-profit').innerText = '$0.000';
+            return;
+        }
+
+        const riskParams = this.mode === 'normal' ? { loss: 0.985, profit: 1.03 } : { loss: 0.97, profit: 1.06 };
+        
+        document.getElementById('val-loss').innerText = '$' + (price * riskParams.loss).toFixed(3);
+        document.getElementById('val-profit').innerText = '$' + (price * riskParams.profit).toFixed(3);
     }
-    
-    let lossMultiplier = 0.985;
-    let profitMultiplier = 1.03;
-    
-    if (currentCalcMode === 'etf') {
-        lossMultiplier = 0.97;
-        profitMultiplier = 1.06;
-    }
-    
-    const lossPrice = price * lossMultiplier;
-    const profitPrice = price * profitMultiplier;
-    
-    document.getElementById('loss-val').innerText = '$' + lossPrice.toFixed(3);
-    document.getElementById('profit-val').innerText = '$' + profitPrice.toFixed(3);
-}
+};
+
+// 启动应用
+document.addEventListener('DOMContentLoaded', () => App.init());
 </script>
 
 </body>
