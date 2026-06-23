@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>麻雀战法 · 30核全景驾驶舱</title>
+    <title>麻雀战法 · 三核全景狙击终端</title>
     <style>
         :root {
             --bg-color: #0d0e12;
@@ -66,7 +66,7 @@
             text-align: center;
             padding: 10px 0;
             color: var(--text-muted);
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             border-radius: 8px;
             transition: all 0.2s ease;
@@ -77,7 +77,6 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
-        /* 雷达高度稍微调高，适配30个标签的滚动条 */
         .widget-wrapper { width: 100%; height: 500px; border-radius: 12px; overflow: hidden; background: #131722; position: relative; }
         
         .input-group { margin-bottom: 10px; }
@@ -112,11 +111,12 @@
 
 <div class="container">
     <h1>麻雀战法 · 全景战控</h1>
-    <div class="subtitle">双核引擎：全景30大板块 ↔ 自动技术雷达</div>
+    <div class="subtitle">三位一体：30大阵地监控 ↔ 异动雷达 ↔ K线狙击</div>
 
     <div class="tab-container">
-        <div class="tab-btn active" id="btn-watchlist" onclick="switchTab('watchlist')">📡 30大硬核阵地</div>
-        <div class="tab-btn" id="btn-screener" onclick="switchTab('screener')">🎯 自动技术雷达</div>
+        <div class="tab-btn active" id="btn-watchlist" onclick="switchTab('watchlist')">📡 30大阵地</div>
+        <div class="tab-btn" id="btn-screener" onclick="switchTab('screener')">🎯 信号雷达</div>
+        <div class="tab-btn" id="btn-chart" onclick="switchTab('chart')">📈 狙击看盘</div>
     </div>
 
     <div class="card" style="padding: 10px;">
@@ -180,11 +180,11 @@
                     "symbols": [{"s": "NASDAQ:MSTR"}, {"s": "NASDAQ:COIN"}, {"s": "NASDAQ:MARA"}, {"s": "NASDAQ:RIOT"}, {"s": "NASDAQ:CLSK"}, {"s": "NASDAQ:HUT"}]
                   },
                   {
-                    "title": "12.自动驾驶/EV",
+                    "title": "12.自动驾驶",
                     "symbols": [{"s": "NASDAQ:TSLA"}, {"s": "NASDAQ:RIVN"}, {"s": "NASDAQ:LCID"}, {"s": "NASDAQ:ON"}, {"s": "NYSE:XPEV"}, {"s": "NASDAQ:LI"}]
                   },
                   {
-                    "title": "13.支付/FinTech",
+                    "title": "13.金融科技",
                     "symbols": [{"s": "NASDAQ:PYPL"}, {"s": "NYSE:SQ"}, {"s": "NASDAQ:SOFI"}, {"s": "NYSE:V"}, {"s": "NYSE:MA"}, {"s": "NASDAQ:HOOD"}]
                   },
                   {
@@ -212,7 +212,7 @@
                     "symbols": [{"s": "NASDAQ:CRSP"}, {"s": "NASDAQ:NTLA"}, {"s": "NASDAQ:ILMN"}, {"s": "NYSE:TMO"}, {"s": "NYSE:DHR"}, {"s": "NASDAQ:PACB"}]
                   },
                   {
-                    "title": "20.传统军工",
+                    "title": "20.军工防务",
                     "symbols": [{"s": "NYSE:LMT"}, {"s": "NYSE:RTX"}, {"s": "NYSE:GD"}, {"s": "NYSE:NOC"}, {"s": "NYSE:LHX"}, {"s": "NYSE:HII"}]
                   },
                   {
@@ -232,8 +232,8 @@
                     "symbols": [{"s": "NYSE:WMT"}, {"s": "NASDAQ:COST"}, {"s": "NYSE:TGT"}, {"s": "NYSE:MCD"}, {"s": "NYSE:DG"}, {"s": "NYSE:DLTR"}]
                   },
                   {
-                    "title": "25.社交社区",
-                    "symbols": [{"s": "NYSE:SNAP"}, {"s": "NYSE:PINS"}, {"s": "NYSE:RDDT"}, {"s": "NASDAQ:MTCH"}, {"s": "NASDAQ:BUMBLE"}, {"s": "NASDAQ:WB"}]
+                    "title": "25.运动服饰",
+                    "symbols": [{"s": "NYSE:NKE"}, {"s": "NASDAQ:LULU"}, {"s": "NYSE:UAA"}, {"s": "NYSE:CROX"}, {"s": "NYSE:DECK"}, {"s": "NYSE:ONON"}]
                   },
                   {
                     "title": "26.旅游与航空",
@@ -252,7 +252,7 @@
                     "symbols": [{"s": "NASDAQ:TMUS"}, {"s": "NYSE:VZ"}, {"s": "NYSE:T"}, {"s": "NASDAQ:CMCSA"}, {"s": "NASDAQ:CHTR"}, {"s": "NYSE:AMT"}]
                   },
                   {
-                    "title": "30.大盘/波动率",
+                    "title": "30.大盘波动率",
                     "symbols": [{"s": "AMEX:SPY"}, {"s": "NASDAQ:QQQ"}, {"s": "AMEX:IWM"}, {"s": "NYSE:VIXY"}, {"s": "NASDAQ:SQQQ"}, {"s": "NASDAQ:TQQQ"}]
                   }
                 ]
@@ -275,6 +275,31 @@
                 "colorTheme": "dark",
                 "locale": "zh_CN",
                 "isTransparent": true
+                }
+                </script>
+            </div>
+        </div>
+
+        <div id="view-chart" class="widget-wrapper" style="display: none;">
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                {
+                "autosize": true,
+                "symbol": "NASDAQ:NVDA",
+                "interval": "1",
+                "timezone": "America/New_York",
+                "theme": "dark",
+                "style": "1",
+                "locale": "zh_CN",
+                "allow_symbol_change": true,
+                "calendar": false,
+                "studies": [
+                  "VWAP@tv-basicstudies",
+                  "EMA@tv-basicstudies",
+                  "EMA@tv-basicstudies"
+                ],
+                "support_host": "https://www.tradingview.com"
                 }
                 </script>
             </div>
@@ -303,13 +328,15 @@
 </div>
 
 <script>
-// 双核引擎无缝切换逻辑
+// 三核引擎无缝切换逻辑
 function switchTab(tabId) {
     document.getElementById('view-watchlist').style.display = 'none';
     document.getElementById('view-screener').style.display = 'none';
+    document.getElementById('view-chart').style.display = 'none';
     
     document.getElementById('btn-watchlist').classList.remove('active');
     document.getElementById('btn-screener').classList.remove('active');
+    document.getElementById('btn-chart').classList.remove('active');
     
     document.getElementById('view-' + tabId).style.display = 'block';
     document.getElementById('btn-' + tabId).classList.add('active');
