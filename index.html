@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>麻雀战法 · 终极双核终端</title>
+    <title>麻雀战法 · 30核全景驾驶舱</title>
     <style>
         :root {
             --bg-color: #0d0e12;
@@ -27,7 +27,6 @@
             min-height: 100vh;
         }
         
-        /* 1. 顶部硬核纪律跑马灯 */
         .discipline-bar {
             width: 100%;
             background: rgba(255, 77, 79, 0.15);
@@ -55,7 +54,6 @@
         .subtitle { font-size: 11px; color: var(--text-muted); text-align: center; margin-bottom: 16px; }
         .card { background: var(--card-bg); border-radius: 16px; padding: 14px; margin-bottom: 12px; border: 1px solid #262938; }
         
-        /* 2. 双引擎切换按钮 (App 级 UI) */
         .tab-container {
             display: flex;
             background: var(--tab-bg);
@@ -79,10 +77,9 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
-        /* 3. 雷达容器 */
-        .widget-wrapper { width: 100%; height: 460px; border-radius: 12px; overflow: hidden; background: #131722; position: relative; }
+        /* 雷达高度稍微调高，适配30个标签的滚动条 */
+        .widget-wrapper { width: 100%; height: 500px; border-radius: 12px; overflow: hidden; background: #131722; position: relative; }
         
-        /* 4. 计算器样式 */
         .input-group { margin-bottom: 10px; }
         label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
         .input-wrapper { position: relative; display: flex; align-items: center; }
@@ -114,11 +111,11 @@
 </div>
 
 <div class="container">
-    <h1>麻雀战法 · 战控终端</h1>
-    <div class="subtitle">双核引擎：10大板块阵地 ↔ EMA/VWAP 信号雷达</div>
+    <h1>麻雀战法 · 全景战控</h1>
+    <div class="subtitle">双核引擎：全景30大板块 ↔ 自动技术雷达</div>
 
     <div class="tab-container">
-        <div class="tab-btn active" id="btn-watchlist" onclick="switchTab('watchlist')">📡 10大硬核板块</div>
+        <div class="tab-btn active" id="btn-watchlist" onclick="switchTab('watchlist')">📡 30大硬核阵地</div>
         <div class="tab-btn" id="btn-screener" onclick="switchTab('screener')">🎯 自动技术雷达</div>
     </div>
 
@@ -139,64 +136,124 @@
                 "showSymbolLogo": true,
                 "tabs": [
                   {
-                    "title": "1.存储",
-                    "symbols": [
-                      {"s": "NASDAQ:MU", "d": "美光"}, {"s": "NASDAQ:WDC", "d": "西数"}, {"s": "NYSE:STX", "d": "希捷"}, {"s": "NASDAQ:SMCI", "d": "超微电脑"}, {"s": "NYSE:PSTG", "d": "Pure Storage"}, {"s": "NASDAQ:NTAP", "d": "NetApp"}, {"s": "NASDAQ:ARM", "d": "ARM"}, {"s": "NASDAQ:QCOM", "d": "高通"}, {"s": "NYSE:HPE", "d": "惠普"}, {"s": "AMEX:SPY", "d": "标普500"}
-                    ]
+                    "title": "1.存储硬件",
+                    "symbols": [{"s": "NASDAQ:MU"}, {"s": "NASDAQ:WDC"}, {"s": "NASDAQ:SMCI"}, {"s": "NYSE:STX"}, {"s": "NASDAQ:NTAP"}, {"s": "NASDAQ:ARM"}]
                   },
                   {
                     "title": "2.光通信",
-                    "symbols": [
-                      {"s": "NASDAQ:LITE", "d": "Lumentum"}, {"s": "NASDAQ:COHR", "d": "高意"}, {"s": "NASDAQ:CIEN", "d": "希纳"}, {"s": "NASDAQ:AAOI", "d": "应用光电"}, {"s": "NYSE:ACIA", "d": "Acacia"}, {"s": "NASDAQ:INFN", "d": "Infinera"}, {"s": "NYSE:NPTN", "d": "NeoPhotonics"}, {"s": "NASDAQ:VIAV", "d": "Viavi"}, {"s": "NASDAQ:CSCO", "d": "思科"}, {"s": "NASDAQ:QQQ", "d": "纳指100"}
-                    ]
+                    "symbols": [{"s": "NASDAQ:LITE"}, {"s": "NASDAQ:COHR"}, {"s": "NASDAQ:CIEN"}, {"s": "NASDAQ:AAOI"}, {"s": "NYSE:NPTN"}, {"s": "NASDAQ:VIAV"}]
                   },
                   {
-                    "title": "3.半导体",
-                    "symbols": [
-                      {"s": "NASDAQ:NVDA", "d": "英伟达"}, {"s": "NASDAQ:AMAT", "d": "应用材料"}, {"s": "NASDAQ:ASML", "d": "阿斯麦"}, {"s": "NASDAQ:LRCX", "d": "拉姆研究"}, {"s": "NASDAQ:AVGO", "d": "博通"}, {"s": "NASDAQ:AMD", "d": "AMD"}, {"s": "NASDAQ:KLAC", "d": "科磊"}, {"s": "NASDAQ:TSM", "d": "台积电"}, {"s": "NASDAQ:INTC", "d": "英特尔"}, {"s": "NASDAQ:TXN", "d": "德州仪器"}
-                    ]
+                    "title": "3.先进芯片",
+                    "symbols": [{"s": "NASDAQ:NVDA"}, {"s": "NASDAQ:AMD"}, {"s": "NASDAQ:AVGO"}, {"s": "NASDAQ:TSM"}, {"s": "NASDAQ:AMAT"}, {"s": "NASDAQ:ASML"}]
                   },
                   {
-                    "title": "4.航天",
-                    "symbols": [
-                      {"s": "NASDAQ:RKLB", "d": "Rocket Lab"}, {"s": "NASDAQ:SIDU", "d": "Sidus Space"}, {"s": "NASDAQ:ASTS", "d": "AST航天"}, {"s": "NYSE:LLAP", "d": "Terran"}, {"s": "NYSE:SPCE", "d": "维珍银河"}, {"s": "NYSE:LMT", "d": "洛马"}, {"s": "NYSE:RTX", "d": "雷神"}, {"s": "NYSE:NOC", "d": "诺斯罗普"}, {"s": "NYSE:GD", "d": "通用动力"}, {"s": "NYSE:BA", "d": "波音"}
-                    ]
+                    "title": "4.商业航天",
+                    "symbols": [{"s": "NASDAQ:RKLB"}, {"s": "NASDAQ:SIDU"}, {"s": "NASDAQ:ASTS"}, {"s": "NYSE:SPCE"}, {"s": "NYSE:LLAP"}, {"s": "NASDAQ:LUNR"}]
                   },
                   {
-                    "title": "5.矿产",
-                    "symbols": [
-                      {"s": "NYSE:FCX", "d": "自由港"}, {"s": "NYSE:CCJ", "d": "铀业"}, {"s": "NYSE:MP", "d": "MP稀土"}, {"s": "NYSE:SQM", "d": "智利矿业"}, {"s": "NYSE:AA", "d": "美铝"}, {"s": "NYSE:LAC", "d": "美洲锂业"}, {"s": "NYSE:ALB", "d": "雅保"}, {"s": "NYSE:NUE", "d": "纽柯"}, {"s": "NYSE:CLF", "d": "克里夫兰"}, {"s": "NYSE:VALE", "d": "淡水河谷"}
-                    ]
+                    "title": "5.关键矿产",
+                    "symbols": [{"s": "NYSE:FCX"}, {"s": "NYSE:CCJ"}, {"s": "NYSE:MP"}, {"s": "NYSE:SQM"}, {"s": "NYSE:ALB"}, {"s": "NYSE:AA"}]
                   },
                   {
-                    "title": "6.AI应用",
-                    "symbols": [
-                      {"s": "NASDAQ:META", "d": "META"}, {"s": "NASDAQ:APP", "d": "AppLovin"}, {"s": "NASDAQ:GOOGL", "d": "谷歌"}, {"s": "NASDAQ:NFLX", "d": "奈飞"}, {"s": "NASDAQ:TTD", "d": "Trade Desk"}, {"s": "NASDAQ:MSFT", "d": "微软"}, {"s": "NYSE:CRM", "d": "赛富时"}, {"s": "NYSE:ORCL", "d": "甲骨文"}, {"s": "NYSE:NOW", "d": "ServiceNow"}, {"s": "NASDAQ:ADBE", "d": "Adobe"}
-                    ]
+                    "title": "6.AI变现",
+                    "symbols": [{"s": "NASDAQ:META"}, {"s": "NASDAQ:APP"}, {"s": "NASDAQ:GOOGL"}, {"s": "NASDAQ:MSFT"}, {"s": "NASDAQ:NFLX"}, {"s": "NASDAQ:TTD"}]
                   },
                   {
-                    "title": "7.电力",
-                    "symbols": [
-                      {"s": "NYSE:VRT", "d": "维谛技术"}, {"s": "NYSE:BE", "d": "Bloom"}, {"s": "NYSE:GEV", "d": "GE V"}, {"s": "NYSE:CEG", "d": "星座能源"}, {"s": "NYSE:VST", "d": "Vistra"}, {"s": "NYSE:EMR", "d": "艾默生"}, {"s": "NYSE:ETN", "d": "伊顿"}, {"s": "NYSE:PWR", "d": "广达服务"}, {"s": "NYSE:AEE", "d": "Ameren"}, {"s": "NYSE:SO", "d": "南方公司"}
-                    ]
+                    "title": "7.电力电网",
+                    "symbols": [{"s": "NYSE:VRT"}, {"s": "NYSE:CEG"}, {"s": "NYSE:GEV"}, {"s": "NYSE:BE"}, {"s": "NYSE:VST"}, {"s": "NYSE:PWR"}]
                   },
                   {
-                    "title": "8.医药",
-                    "symbols": [
-                      {"s": "NYSE:LLY", "d": "礼来"}, {"s": "NYSE:NVO", "d": "诺和诺德"}, {"s": "NASDAQ:MRNA", "d": "莫德纳"}, {"s": "NASDAQ:AMGN", "d": "安进"}, {"s": "NYSE:PFE", "d": "辉瑞"}, {"s": "NYSE:JNJ", "d": "强生"}, {"s": "NYSE:BMY", "d": "百时美"}, {"s": "NASDAQ:GILD", "d": "吉利德"}, {"s": "NASDAQ:BIIB", "d": "渤健"}, {"s": "NYSE:ABBV", "d": "艾伯维"}
-                    ]
+                    "title": "8.减肥/医药",
+                    "symbols": [{"s": "NYSE:LLY"}, {"s": "NYSE:NVO"}, {"s": "NASDAQ:MRNA"}, {"s": "NASDAQ:AMGN"}, {"s": "NYSE:PFE"}, {"s": "NASDAQ:VRTX"}]
                   },
                   {
-                    "title": "9.工业",
-                    "symbols": [
-                      {"s": "NYSE:FIX", "d": "Comfort"}, {"s": "NYSE:CAT", "d": "卡特彼勒"}, {"s": "NYSE:GE", "d": "通用电气"}, {"s": "NYSE:HON", "d": "霍尼韦尔"}, {"s": "NYSE:ROK", "d": "罗克韦尔"}, {"s": "NASDAQ:FAST", "d": "快扣"}, {"s": "NYSE:GWW", "d": "固安捷"}, {"s": "NYSE:DE", "d": "迪尔"}, {"s": "NYSE:URI", "d": "联合租赁"}, {"s": "NYSE:ETN", "d": "伊顿"}
-                    ]
+                    "title": "9.网络安全",
+                    "symbols": [{"s": "NASDAQ:CRWD"}, {"s": "NASDAQ:PANW"}, {"s": "NASDAQ:FTNT"}, {"s": "NASDAQ:DDOG"}, {"s": "NASDAQ:ZS"}, {"s": "NASDAQ:NET"}]
                   },
                   {
-                    "title": "10.安全",
-                    "symbols": [
-                      {"s": "NASDAQ:CRWD", "d": "CrowdStrike"}, {"s": "NASDAQ:PANW", "d": "帕罗奥图"}, {"s": "NASDAQ:FTNT", "d": "飞塔"}, {"s": "NASDAQ:DDOG", "d": "Datadog"}, {"s": "NASDAQ:ZS", "d": "Zscaler"}, {"s": "NASDAQ:OKTA", "d": "Okta"}, {"s": "NASDAQ:NET", "d": "Cloudflare"}, {"s": "NASDAQ:QLYS", "d": "Qualys"}, {"s": "NASDAQ:TENB", "d": "Tenable"}, {"s": "NASDAQ:CYBR", "d": "CyberArk"}
-                    ]
+                    "title": "10.云/SaaS",
+                    "symbols": [{"s": "NASDAQ:SNOW"}, {"s": "NASDAQ:PLTR"}, {"s": "NYSE:CRM"}, {"s": "NYSE:NOW"}, {"s": "NYSE:PATH"}, {"s": "NASDAQ:MDB"}]
+                  },
+                  {
+                    "title": "11.加密货币",
+                    "symbols": [{"s": "NASDAQ:MSTR"}, {"s": "NASDAQ:COIN"}, {"s": "NASDAQ:MARA"}, {"s": "NASDAQ:RIOT"}, {"s": "NASDAQ:CLSK"}, {"s": "NASDAQ:HUT"}]
+                  },
+                  {
+                    "title": "12.自动驾驶/EV",
+                    "symbols": [{"s": "NASDAQ:TSLA"}, {"s": "NASDAQ:RIVN"}, {"s": "NASDAQ:LCID"}, {"s": "NASDAQ:ON"}, {"s": "NYSE:XPEV"}, {"s": "NASDAQ:LI"}]
+                  },
+                  {
+                    "title": "13.支付/FinTech",
+                    "symbols": [{"s": "NASDAQ:PYPL"}, {"s": "NYSE:SQ"}, {"s": "NASDAQ:SOFI"}, {"s": "NYSE:V"}, {"s": "NYSE:MA"}, {"s": "NASDAQ:HOOD"}]
+                  },
+                  {
+                    "title": "14.电商巨头",
+                    "symbols": [{"s": "NASDAQ:AMZN"}, {"s": "NASDAQ:MELI"}, {"s": "NYSE:SE"}, {"s": "NYSE:BABA"}, {"s": "NASDAQ:PDD"}, {"s": "NYSE:SHOP"}]
+                  },
+                  {
+                    "title": "15.传统能源",
+                    "symbols": [{"s": "NYSE:XOM"}, {"s": "NYSE:CVX"}, {"s": "NYSE:OXY"}, {"s": "NYSE:COP"}, {"s": "NYSE:SLB"}, {"s": "NYSE:HAL"}]
+                  },
+                  {
+                    "title": "16.光伏新能源",
+                    "symbols": [{"s": "NASDAQ:FSLR"}, {"s": "NASDAQ:ENPH"}, {"s": "NASDAQ:SEDG"}, {"s": "NASDAQ:RUN"}, {"s": "NYSE:NEE"}, {"s": "NASDAQ:PLUG"}]
+                  },
+                  {
+                    "title": "17.游戏/元宇宙",
+                    "symbols": [{"s": "NYSE:U"}, {"s": "NASDAQ:EA"}, {"s": "NASDAQ:TTWO"}, {"s": "NYSE:RBLX"}, {"s": "NASDAQ:NTES"}, {"s": "NASDAQ:BILI"}]
+                  },
+                  {
+                    "title": "18.共享出行",
+                    "symbols": [{"s": "NYSE:UBER"}, {"s": "NASDAQ:LYFT"}, {"s": "NASDAQ:DASH"}, {"s": "NASDAQ:ABNB"}, {"s": "NASDAQ:CART"}, {"s": "NASDAQ:EXPE"}]
+                  },
+                  {
+                    "title": "19.基因/CXO",
+                    "symbols": [{"s": "NASDAQ:CRSP"}, {"s": "NASDAQ:NTLA"}, {"s": "NASDAQ:ILMN"}, {"s": "NYSE:TMO"}, {"s": "NYSE:DHR"}, {"s": "NASDAQ:PACB"}]
+                  },
+                  {
+                    "title": "20.传统军工",
+                    "symbols": [{"s": "NYSE:LMT"}, {"s": "NYSE:RTX"}, {"s": "NYSE:GD"}, {"s": "NYSE:NOC"}, {"s": "NYSE:LHX"}, {"s": "NYSE:HII"}]
+                  },
+                  {
+                    "title": "21.华尔街投行",
+                    "symbols": [{"s": "NYSE:JPM"}, {"s": "NYSE:GS"}, {"s": "NYSE:MS"}, {"s": "NYSE:BAC"}, {"s": "NYSE:C"}, {"s": "NYSE:WFC"}]
+                  },
+                  {
+                    "title": "22.物流航运",
+                    "symbols": [{"s": "NYSE:UPS"}, {"s": "NYSE:FDX"}, {"s": "NYSE:ZIM"}, {"s": "NYSE:EXPD"}, {"s": "NYSE:XPO"}, {"s": "NYSE:GSL"}]
+                  },
+                  {
+                    "title": "23.医疗器械",
+                    "symbols": [{"s": "NASDAQ:ISRG"}, {"s": "NYSE:SYK"}, {"s": "NYSE:MDT"}, {"s": "NYSE:BSX"}, {"s": "NYSE:EW"}, {"s": "NYSE:ZBH"}]
+                  },
+                  {
+                    "title": "24.消费降级",
+                    "symbols": [{"s": "NYSE:WMT"}, {"s": "NASDAQ:COST"}, {"s": "NYSE:TGT"}, {"s": "NYSE:MCD"}, {"s": "NYSE:DG"}, {"s": "NYSE:DLTR"}]
+                  },
+                  {
+                    "title": "25.社交社区",
+                    "symbols": [{"s": "NYSE:SNAP"}, {"s": "NYSE:PINS"}, {"s": "NYSE:RDDT"}, {"s": "NASDAQ:MTCH"}, {"s": "NASDAQ:BUMBLE"}, {"s": "NASDAQ:WB"}]
+                  },
+                  {
+                    "title": "26.旅游与航空",
+                    "symbols": [{"s": "NYSE:DAL"}, {"s": "NASDAQ:UAL"}, {"s": "NASDAQ:BKNG"}, {"s": "NYSE:CCL"}, {"s": "NYSE:RCL"}, {"s": "NYSE:LUV"}]
+                  },
+                  {
+                    "title": "27.工业制造",
+                    "symbols": [{"s": "NYSE:CAT"}, {"s": "NYSE:GE"}, {"s": "NYSE:HON"}, {"s": "NYSE:DE"}, {"s": "NYSE:URI"}, {"s": "NYSE:ETN"}]
+                  },
+                  {
+                    "title": "28.农业化肥",
+                    "symbols": [{"s": "NYSE:NTR"}, {"s": "NYSE:MOS"}, {"s": "NYSE:CF"}, {"s": "NYSE:CTVA"}, {"s": "NYSE:FMC"}, {"s": "NYSE:BG"}]
+                  },
+                  {
+                    "title": "29.基础通信",
+                    "symbols": [{"s": "NASDAQ:TMUS"}, {"s": "NYSE:VZ"}, {"s": "NYSE:T"}, {"s": "NASDAQ:CMCSA"}, {"s": "NASDAQ:CHTR"}, {"s": "NYSE:AMT"}]
+                  },
+                  {
+                    "title": "30.大盘/波动率",
+                    "symbols": [{"s": "AMEX:SPY"}, {"s": "NASDAQ:QQQ"}, {"s": "AMEX:IWM"}, {"s": "NYSE:VIXY"}, {"s": "NASDAQ:SQQQ"}, {"s": "NASDAQ:TQQQ"}]
                   }
                 ]
                 }
@@ -248,15 +305,12 @@
 <script>
 // 双核引擎无缝切换逻辑
 function switchTab(tabId) {
-    // 隐藏所有雷达
     document.getElementById('view-watchlist').style.display = 'none';
     document.getElementById('view-screener').style.display = 'none';
     
-    // 取消所有按钮高亮
     document.getElementById('btn-watchlist').classList.remove('active');
     document.getElementById('btn-screener').classList.remove('active');
     
-    // 激活对应的雷达和按钮
     document.getElementById('view-' + tabId).style.display = 'block';
     document.getElementById('btn-' + tabId).classList.add('active');
 }
